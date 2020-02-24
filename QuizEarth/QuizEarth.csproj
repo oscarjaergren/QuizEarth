@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
+    <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.2-preview.29" />
+    <PackageReference Include="System.Text.Json" Version="4.7.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.282-pre4" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.0-pre1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\BlankMap.svg" />
+    <None Remove="Resources\userWorldMap.svg" />
+    <None Remove="Resources\world.svg" />
+    <None Remove="Resources\worldMap.svg" />
+    <None Remove="Resources\worldWithAntarcticaLow.svg" />
+    <None Remove="Resources\worldWithAntarcticaHigh.svg" />
+    <None Remove="Resources\cat.svg" />
+    <EmbeddedResource Include="Resources\BlankMap.svg" />
+    <EmbeddedResource Include="Resources\cat.svg" />
+    <EmbeddedResource Include="Resources\userWorldMap.svg" />
+    <EmbeddedResource Include="Resources\world.svg" />
+    <EmbeddedResource Include="Resources\worldMap.svg" />
+  </ItemGroup>
+</Project>
