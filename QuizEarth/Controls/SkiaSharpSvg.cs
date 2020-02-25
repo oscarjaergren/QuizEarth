@@ -1,5 +1,10 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Reflection;
+
+using NGraphics;
+
 using SkiaSharp.Extended.Svg;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
@@ -16,7 +21,7 @@ namespace QuizEarth.Controls
 
         public string Source
         {
-            get => (string) GetValue(SourceProperty);
+            get => (string)GetValue(SourceProperty);
             set => SetValue(SourceProperty, value);
         }
 
@@ -58,9 +63,13 @@ namespace QuizEarth.Controls
 
                 using (var stream = GetType().Assembly.GetManifestResourceStream(Source))
                 {
+
+                    SvgReader svgReader = new SvgReader(stream);
+                    var Graphic = svgReader.Graphic;
+
+
                     var skSvg = new SKSvg();
                     skSvg.Load(stream);
-
                     var skImageInfo = e.Info;
                     canvas.Translate(skImageInfo.Width / 2f, skImageInfo.Height / 2f);
 

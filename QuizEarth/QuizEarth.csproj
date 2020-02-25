@@ -6,10 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NGraphics" Version="0.6.0-beta2" />
     <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.2-preview.29" />
     <PackageReference Include="System.Text.Json" Version="4.7.1" />
+    <PackageReference Include="TouchView" Version="4.1.28" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.282-pre4" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.0-pre1" />

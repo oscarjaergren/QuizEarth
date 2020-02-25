@@ -3,10 +3,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:QuizEarth.Controls;assembly=QuizEarth"
+             xmlns:forms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              x:Class="QuizEarth.Views.MapPage">
 
-    <ScrollView>
-            <controls:SvgImage Source="QuizEarth.Resources.worldMap.svg" />
-    </ScrollView>
-    
+    <Grid >
+
+        <controls:SvgImage x:Name="canvasView" Source="QuizEarth.Resources.worldMap.svg"/>
+
+        <Grid.Effects>
+            <controls:TouchEffect Capture="True"
+                            TouchAction="OnTouchEffectAction" />
+        </Grid.Effects>
+
+    </Grid>
+
 </ContentPage>
