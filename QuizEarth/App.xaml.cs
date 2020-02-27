@@ -1,4 +1,6 @@
 ﻿using QuizEarth.Services;
+using QuizEarth.Views;
+
 using Xamarin.Forms;
 
 namespace QuizEarth
@@ -9,8 +11,9 @@ namespace QuizEarth
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            MainPage = new MapPage2();
+            
+            //MainPage = new AppShell();
         }
 
         protected override void OnStart()

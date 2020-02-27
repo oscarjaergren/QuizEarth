@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Xamarin;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Platform = Xamarin.Essentials.Platform;
@@ -18,6 +19,9 @@ namespace QuizEarth.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            FormsGoogleMaps.Init(this, savedInstanceState);
+
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);

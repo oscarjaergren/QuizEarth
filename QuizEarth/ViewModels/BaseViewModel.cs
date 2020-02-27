@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using QuizEarth.Models;
 using QuizEarth.Services;
 using Xamarin.Forms;
 
@@ -13,7 +12,6 @@ namespace QuizEarth.ViewModels
         private bool isBusy;
 
         private string title = string.Empty;
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
         public bool IsBusy
         {

@@ -37,8 +37,8 @@
             <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
         </Tab>
 
-        <Tab Title="Map" Icon="tab_about.png">
-            <ShellContent ContentTemplate="{DataTemplate local:MapPage}" />
+        <Tab Title="GoogleMaps" Icon="tab_about.png">
+            <ShellContent ContentTemplate="{DataTemplate local:MapPage2}" />
         </Tab>
 
     </TabBar>
