@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="QuizEarth.Views.QuizPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout
+            HorizontalOptions="CenterAndExpand"
+            Orientation="Horizontal">
+            <Label
+                HorizontalTextAlignment="Start"
+                Text="{Binding Score}" />
+            <Label
+                HorizontalTextAlignment="End"
+                Text="{Binding AnsweredQuestions}" />
+
+        </StackLayout>
+
+        <Image
+            Grid.Row="1"
+            Source="{Binding Question.Flag}" />
+
+        <Label
+            HorizontalTextAlignment="Center"
+            Grid.Row="2"
+            Text="{Binding TimeLeft}" />
+
+        <CollectionView
+            Grid.Row="3"/>
+    </Grid>
+
+</ContentPage>
