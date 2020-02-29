@@ -3,8 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pageModels="clr-namespace:QuizEarth.ViewModels"
              mc:Ignorable="d"
-             x:Class="QuizEarth.Views.QuizPage">
+             x:Class="QuizEarth.Views.QuizPage"             
+             x:DataType="viewModels:DocumentsPageModel"
+             Visual="Material">
+
+    <ContentPage.BindingContext>
+        <pageModels:QuizPageModel />
+    </ContentPage.BindingContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -13,29 +21,35 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackLayout
-            HorizontalOptions="CenterAndExpand"
-            Orientation="Horizontal">
-            <Label
-                HorizontalTextAlignment="Start"
-                Text="{Binding Score}" />
-            <Label
-                HorizontalTextAlignment="End"
-                Text="{Binding AnsweredQuestions}" />
 
-        </StackLayout>
+        <CollectionView Grid.Row="3" ItemsSource="{Binding CountryQuestionsList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-        <Image
-            Grid.Row="1"
-            Source="{Binding Question.Flag}" />
+                        <Label Text="{Binding Question}"/>
 
-        <Label
-            HorizontalTextAlignment="Center"
-            Grid.Row="2"
-            Text="{Binding TimeLeft}" />
+                        <StackLayout Grid.Row="1">
+                            <Label Text="{Binding Answer1}" />
+                            <Label Text="{Binding Answer2}" />
+                            <Label Text="{Binding Answer3}" />
+                            <Label Text="{Binding Answer4}" />
+                        </StackLayout>
 
-        <CollectionView
-            Grid.Row="3"/>
+                    </Grid>
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
     </Grid>
 
 </ContentPage>
