@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizEarth.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,11 +12,11 @@ namespace QuizEarth.ViewModels
             GetQuestions();
         }
 
-        private void GetQuestions()
+        private async void GetQuestions()
         {
-            throw new NotImplementedException();
+            QuestionsList = await App.Database.GetItemsAsync();
         }   
 
-        public List<CountryQuestionsList> QuestionsList { get; set; }
+        public List<Question> QuestionsList { get; set; }
     }
 }

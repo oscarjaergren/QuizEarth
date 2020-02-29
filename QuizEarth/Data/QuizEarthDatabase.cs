@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using QuizEarth.Helpers;
-using QuizEarth.ViewModels;
+using QuizEarth.Models;
 
 namespace QuizEarth.Data
 {
-    public class TodoItemDatabase
+    public class QuizEarthDatabase
     {
         static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
         {
@@ -18,7 +18,7 @@ namespace QuizEarth.Data
         static SQLiteAsyncConnection Database => lazyInitializer.Value;
         static bool initialized = false;
 
-        public TodoItemDatabase()
+        public QuizEarthDatabase()
         {
             InitializeAsync().SafeFireAndForget(false);
         }
@@ -27,30 +27,30 @@ namespace QuizEarth.Data
         {
             if (!initialized)
             {
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(CountryQuestionsList).Name))
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Question).Name))
                 {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(CountryQuestionsList)).ConfigureAwait(false);
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Question)).ConfigureAwait(false);
                     initialized = true;
                 }
             }
         }
 
-        public Task<List<CountryQuestionsList>> GetItemsAsync()
+        public Task<List<Question>> GetItemsAsync()
         {
-            return Database.Table<CountryQuestionsList>().ToListAsync();
+            return Database.Table<Question>().ToListAsync();
         }
 
-        public Task<List<CountryQuestionsList>> GetItemsNotDoneAsync()
+        public Task<List<Question>> GetItemsNotDoneAsync()
         {
-            return Database.QueryAsync<CountryQuestionsList>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+            return Database.QueryAsync<Question>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
         }
 
-        public Task<CountryQuestionsList> GetItemAsync(int id)
+        public Task<Question> GetItemAsync(int id)
         {
-            return Database.Table<CountryQuestionsList>().Where(i => i.CountryId == id).FirstOrDefaultAsync();
+            return Database.Table<Question>().Where(i => i.CountryId == id).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveItemAsync(CountryQuestionsList item)
+        public Task<int> SaveItemAsync(Question item)
         {
             if (item.CountryId != 0)
             {
@@ -62,7 +62,7 @@ namespace QuizEarth.Data
             }
         }
 
-        public Task<int> DeleteItemAsync(CountryQuestionsList item)
+        public Task<int> DeleteItemAsync(Question item)
         {
             return Database.DeleteAsync(item);
         }

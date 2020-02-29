@@ -4,9 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pageModels="clr-namespace:QuizEarth.ViewModels"
+             xmlns:Models="clr-namespace:QuizEarth.Models"
              mc:Ignorable="d"
              x:Class="QuizEarth.Views.QuizPage"             
-             x:DataType="viewModels:DocumentsPageModel"
+             x:DataType="pageModels:QuizPageModel"
              Visual="Material">
 
     <ContentPage.BindingContext>
@@ -22,9 +23,9 @@
         </Grid.RowDefinitions>
 
 
-        <CollectionView Grid.Row="3" ItemsSource="{Binding CountryQuestionsList}">
+        <CollectionView Grid.Row="3" ItemsSource="{Binding QuestionsList}">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="Models:Question">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -34,7 +35,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="{Binding Question}"/>
+                        <Label Text="{Binding QuestionText}"/>
 
                         <StackLayout Grid.Row="1">
                             <Label Text="{Binding Answer1}" />
