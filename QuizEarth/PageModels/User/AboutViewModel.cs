@@ -2,7 +2,7 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace QuizEarth.ViewModels
+namespace QuizEarth.PageModels
 {
     public class AboutViewModel : BaseViewModel
     {
