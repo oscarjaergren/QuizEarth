@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pageModels="clr-namespace:QuizEarth.PageModels;assembly=QuizEarth"
+             xmlns:admin="clr-namespace:QuizEarth.PageModels.Admin;assembly=QuizEarth"
+             x:Class="QuizEarth.Views.Admin.AdminPage"  
+             x:DataType="admin:AdminPageModel"
+             Visual="Material">
+    
+    <ContentPage.BindingContext>
+        <admin:AdminPageModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="QuestionStyle" TargetType="Editor">
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="AnswerStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="Green" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Editor Grid.Row="0" Text="{Binding Question.QuestionText}" Style="{StaticResource QuestionStyle}" />
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Entry Grid.Row="0" Grid.Column="0" Text="{Binding Question.Answer1}" Style="{StaticResource AnswerStyle}" />
+            <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Question.Answer2}" Style="{StaticResource AnswerStyle}" />
+            <Entry Grid.Row="1" Grid.Column="0" Text="{Binding Question.Answer3}" Style="{StaticResource AnswerStyle}" />
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Question.Answer4}" Style="{StaticResource AnswerStyle}" />
+
+        </Grid>
+
+    </Grid>
+    
+</ContentPage>

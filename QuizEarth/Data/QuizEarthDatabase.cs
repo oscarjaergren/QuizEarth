@@ -1,38 +1,34 @@
-﻿using SQLite;
-using System;
-using System.Threading.Tasks;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using QuizEarth.Helpers;
 using QuizEarth.Models;
+using SQLite;
 
 namespace QuizEarth.Data
 {
     public class QuizEarthDatabase
     {
-        static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
-        {
-            return new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-        });
+        private static readonly Lazy<SQLiteAsyncConnection> LazyInitializer = new Lazy<SQLiteAsyncConnection>(() => new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags));
 
-        static SQLiteAsyncConnection Database => lazyInitializer.Value;
-        static bool initialized = false;
+        private static bool _initialized;
 
         public QuizEarthDatabase()
         {
             InitializeAsync().SafeFireAndForget(false);
         }
 
-        async Task InitializeAsync()
+        private static SQLiteAsyncConnection Database => LazyInitializer.Value;
+
+        private async Task InitializeAsync()
         {
-            if (!initialized)
-            {
-                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Question).Name))
+            if (!_initialized)
+                if (Database.TableMappings.All(m => m.MappedType.Name != typeof(Question).Name))
                 {
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(Question)).ConfigureAwait(false);
-                    initialized = true;
+                    _initialized = true;
                 }
-            }
         }
 
         public Task<List<Question>> GetItemsAsync()
@@ -53,13 +49,8 @@ namespace QuizEarth.Data
         public Task<int> SaveItemAsync(Question item)
         {
             if (item.CountryId != 0)
-            {
                 return Database.UpdateAsync(item);
-            }
-            else
-            {
-                return Database.InsertAsync(item);
-            }
+            return Database.InsertAsync(item);
         }
 
         public Task<int> DeleteItemAsync(Question item)

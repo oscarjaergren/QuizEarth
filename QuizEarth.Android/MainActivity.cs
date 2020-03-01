@@ -21,7 +21,7 @@ namespace QuizEarth.Droid
             base.OnCreate(savedInstanceState);
 
             FormsGoogleMaps.Init(this, savedInstanceState);
-
+            FormsMaterial.Init(this, savedInstanceState);
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);

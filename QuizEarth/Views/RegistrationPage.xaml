@@ -25,10 +25,6 @@
         <DatePicker></DatePicker>
         <Label Text="Address"></Label>
         <Editor></Editor>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Save Password"></Label>
-            <Switch IsToggled="False"></Switch>
-        </StackLayout>
         <Button Text="Sign Up"></Button>
         <Label Text="Already have account? Sign In" TextColor="Blue"></Label>
     </StackLayout>

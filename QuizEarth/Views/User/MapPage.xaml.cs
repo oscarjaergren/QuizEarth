@@ -15,10 +15,10 @@ using Xamarin.Forms.Xaml;
 using Polygon = GeoJSON.Net.Geometry.Polygon;
 using Position = Xamarin.Forms.GoogleMaps.Position;
 
-namespace QuizEarth.Views
+namespace QuizEarth.Views.User
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MapPage2 : ContentPage
+    public partial class MapPage : ContentPage
     {
         private const string StyleText = "[\n" +
                                          "  {\n" +
@@ -40,12 +40,12 @@ namespace QuizEarth.Views
                                          "  }" +
                                          "]";
 
-        private FeatureCollection countryPolygons;
-        private Country selectedCountry;
+        private FeatureCollection _countryPolygons;
 
-        private CountryPopUpPage countryPopUp;
+        private CountryPopUpPage _countryPopUp;
+        private Country _selectedCountry;
 
-        public MapPage2()
+        public MapPage()
         {
             InitializeComponent();
             BindingContext = this;
@@ -63,10 +63,10 @@ namespace QuizEarth.Views
 
         public Country SelectedCountry
         {
-            get => selectedCountry;
+            get => _selectedCountry;
             set
             {
-                selectedCountry = value;
+                _selectedCountry = value;
                 if (value != null)
                 {
                 }
@@ -80,9 +80,9 @@ namespace QuizEarth.Views
 
         private void InitData()
         {
-            countryPolygons = JsonConvert.DeserializeObject<FeatureCollection>(ReadCountryGeoJson());
+            _countryPolygons = JsonConvert.DeserializeObject<FeatureCollection>(ReadCountryGeoJson());
             Countries =
-                countryPolygons.Features
+                _countryPolygons.Features
                     .Select(f => new Country(f.Id, f.Properties["name"].ToString()))
                     .OrderBy(c => c.Name)
                     .ToArray();
@@ -94,7 +94,7 @@ namespace QuizEarth.Views
             var country = Countries.First();
             var country2 = Countries.FirstOrDefault(x => x.Id == "SE");
 
-            AvailableCountries = new List<Country> { country, country2 };
+            AvailableCountries = new List<Country> {country, country2};
 
             HighlightCountry();
         }
@@ -106,7 +106,7 @@ namespace QuizEarth.Views
 
             foreach (var availableCountry in AvailableCountries)
             {
-                var feature = countryPolygons.Features.FirstOrDefault(f =>
+                var feature = _countryPolygons.Features.FirstOrDefault(f =>
                     f.Id.Equals(availableCountry.Id, StringComparison.CurrentCultureIgnoreCase));
 
                 if (feature == null) return;
@@ -115,7 +115,7 @@ namespace QuizEarth.Views
                 {
                     //Country area consists of multiple polygons
                     var multiPolygonGeometry = feature.Geometry as MultiPolygon;
-                    foreach (var polygonGeometry in multiPolygonGeometry.Coordinates)
+                    foreach (var polygonGeometry in multiPolygonGeometry?.Coordinates)
                     {
                         var polygon = GeoJsonPolygonToMapPolygon(polygonGeometry);
                         if (polygon != null) polygons.Add(polygon);
@@ -198,8 +198,8 @@ namespace QuizEarth.Views
 
             if (country != null)
             {
-                countryPopUp = new CountryPopUpPage();
-                await PopupNavigation.Instance.PushAsync(countryPopUp);
+                _countryPopUp = new CountryPopUpPage();
+                await PopupNavigation.Instance.PushAsync(_countryPopUp);
             }
         }
     }

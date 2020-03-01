@@ -6,8 +6,15 @@
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        mc:Ignorable="d"
        xmlns:local="clr-namespace:QuizEarth.Views"
+       xmlns:admin="clr-namespace:QuizEarth.Views.Admin"
+       xmlns:user="clr-namespace:QuizEarth.Views.User"
+
+       
        Title="QuizEarth"
-       x:Class="QuizEarth.AppShell">
+       x:Class="QuizEarth.AppShell"
+       Navigating="OnNavigating"
+       Navigated="OnNavigated"
+       >
 
     <!-- 
         Styles and Resources 
@@ -31,16 +38,43 @@
     </Shell.Resources>
 
     <!-- Your Pages -->
-    <TabBar>
 
-        <Tab Title="About" Icon="tab_about.png">
-            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+    <FlyoutItem Route="animals"
+                Title="Options"
+                FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Domestic"
+             Route="domestic"
+             Icon="paw.png">
+            <ShellContent Route="cats"
+                          Title="Login"
+                          Icon="cat.png"
+                          ContentTemplate="{DataTemplate local:LoginPage}" />
+            <ShellContent Route="dogs"
+                          Title="Registration"
+                          Icon="dog.png"
+                          ContentTemplate="{DataTemplate local:RegistrationPage}" />
         </Tab>
-
-        <Tab Title="GoogleMaps" Icon="tab_about.png">
-            <ShellContent ContentTemplate="{DataTemplate local:MapPage2}" />
-        </Tab>
-
-    </TabBar>
+        
+  
+        <ShellContent Route="monkeys"
+                      Title="Admin"
+                      Icon="monkey.png"
+                      ContentTemplate="{DataTemplate admin:AdminPage}" />
+        
+        <ShellContent Route="elephants"
+                      Title="Map"
+                      Icon="elephant.png"
+                      ContentTemplate="{DataTemplate user:MapPage}" />
+        
+        <ShellContent Route="monkeys"
+                      Title="Quiz"
+                      Icon="monkey.png"
+                      ContentTemplate="{DataTemplate user:QuizPage}" />
+        
+        <ShellContent Route="bears"
+                      Title="Leaderboard"
+                      Icon="bear.png"
+                      ContentTemplate="{DataTemplate user:LeaderboardPage}" />
+    </FlyoutItem>
 
 </Shell>

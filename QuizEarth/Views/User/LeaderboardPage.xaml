@@ -5,13 +5,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="QuizEarth.Views.AboutPage"
-             xmlns:vm="clr-namespace:QuizEarth.ViewModels"
+             x:Class="QuizEarth.Views.User.LeaderboardPage"
+             xmlns:pageModels="clr-namespace:QuizEarth.PageModels;assembly=QuizEarth"
              Title="{Binding Title}">
-
-    <ContentPage.BindingContext>
-        <vm:AboutViewModel />
-    </ContentPage.BindingContext>
 
     <StackLayout
         Orientation="Vertical">

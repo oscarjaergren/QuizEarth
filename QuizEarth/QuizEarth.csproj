@@ -12,7 +12,8 @@
     <PackageReference Include="System.Text.Json" Version="4.7.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.0" />  
-    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />  
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.5.0.356" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,16 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\CountryPopUpPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MapPage2.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\QuizPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RegistrationPage.xaml">

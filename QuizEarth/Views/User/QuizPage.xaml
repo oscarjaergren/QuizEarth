@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:QuizEarth.Models"
+             xmlns:pageModels="clr-namespace:QuizEarth.PageModels.User;assembly=QuizEarth"
+             mc:Ignorable="d"
+             x:Class="QuizEarth.Views.User.QuizPage"
+             x:DataType="pageModels:QuizPageModel"
+             Visual="Material">
+
+    <ContentPage.BindingContext>
+        <pageModels:QuizPageModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="QuestionStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="AnswerStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="Green" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Text="{Binding Question.QuestionText}" Style="{StaticResource QuestionStyle}" />
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" Text="{Binding Question.Answer1}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding .}" Style="{StaticResource AnswerStyle}" />
+            <Button Grid.Row="0" Grid.Column="1" Text="{Binding Question.Answer2}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding .}" Style="{StaticResource AnswerStyle}" />
+            <Button Grid.Row="1" Grid.Column="0" Text="{Binding Question.Answer3}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding .}" Style="{StaticResource AnswerStyle}" />
+            <Button Grid.Row="1" Grid.Column="1" Text="{Binding Question.Answer4}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding .}" Style="{StaticResource AnswerStyle}" />
+
+        </Grid>
+
+        <StackLayout Grid.Row="2">
+            <Label Text="Place Timer here" />
+            <Label Text="Place Quiz Counter here" />
+        </StackLayout>
+
+    </Grid>
+
+</ContentPage>

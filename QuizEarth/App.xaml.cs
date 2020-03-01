@@ -1,35 +1,23 @@
 ﻿using QuizEarth.Data;
 using QuizEarth.Services;
 using QuizEarth.Views;
-
+using QuizEarth.Views.User;
 using Xamarin.Forms;
 
 namespace QuizEarth
 {
     public partial class App : Application
     {
-        static QuizEarthDatabase database;
+        private static QuizEarthDatabase _database;
 
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MapPage2();
-            
-            //MainPage = new AppShell();
+            MainPage = new AppShell();
         }
 
-        public static QuizEarthDatabase Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new QuizEarthDatabase();
-                }
-                return database;
-            }
-        }
+        public static QuizEarthDatabase Database => _database ?? (_database = new QuizEarthDatabase());
 
         protected override void OnStart()
         {

@@ -6,7 +6,7 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  mc:Ignorable="d"
-                 x:Class="QuizEarth.Views.CountryPopUpPage">
+                 x:Class="QuizEarth.Views.User.CountryPopUpPage">
     <StackLayout
         HeightRequest="200"
         WidthRequest="300"
@@ -14,7 +14,8 @@
         VerticalOptions="Center"
         HorizontalOptions="Center"
         Padding="20, 20, 20, 20">
-        <Label
-            Text="You Clicked Sweden" />
+        <Label Text="You Clicked Sweden" />
+        <Button Text="START" Clicked="Button_OnClicked" />
+
     </StackLayout>
 </pages:PopupPage>

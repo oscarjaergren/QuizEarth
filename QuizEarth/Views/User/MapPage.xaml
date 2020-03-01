@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:map="clr-namespace:QuizEarth.Controls.Map;assembly=QuizEarth"
              mc:Ignorable="d"
-             x:Class="QuizEarth.Views.MapPage2">
+             x:Class="QuizEarth.Views.User.MapPage">
 
     <map:HighlightableMap x:Name="Map" MapClicked="Map_OnMapClicked" />
 

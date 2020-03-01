@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using QuizEarth.Services;
-using Xamarin.Forms;
 
-namespace QuizEarth.ViewModels
+namespace QuizEarth.PageModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
