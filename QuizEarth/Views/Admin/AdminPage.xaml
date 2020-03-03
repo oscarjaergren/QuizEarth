@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pageModels="clr-namespace:QuizEarth.PageModels;assembly=QuizEarth"
              xmlns:admin="clr-namespace:QuizEarth.PageModels.Admin;assembly=QuizEarth"
+             xmlns:models="clr-namespace:QuizEarth.Models"
              x:Class="QuizEarth.Views.Admin.AdminPage"  
              x:DataType="admin:AdminPageModel"
              Visual="Material">
@@ -15,44 +16,58 @@
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <Style x:Key="QuestionStyle" TargetType="Editor">
+            <Style x:Key="QuestionStyle" TargetType="Entry">
                 <Setter Property="FontSize" Value="26" />
-                <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
 
             <Style x:Key="AnswerStyle" TargetType="Entry">
                 <Setter Property="TextColor" Value="Green" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
             </Style>
 
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <StackLayout>
+        <CarouselView ItemsSource="{Binding Questions}" IndicatorView="indicatorView" >
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:Question">
 
-        <Editor Grid.Row="0" Text="{Binding Question.QuestionText}" Style="{StaticResource QuestionStyle}" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.3*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                        <Entry Grid.Row="0" Text="{Binding QuestionText}" Placeholder="Enter Question" Style="{StaticResource QuestionStyle}" />
 
-            <Entry Grid.Row="0" Grid.Column="0" Text="{Binding Question.Answer1}" Style="{StaticResource AnswerStyle}" />
-            <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Question.Answer2}" Style="{StaticResource AnswerStyle}" />
-            <Entry Grid.Row="1" Grid.Column="0" Text="{Binding Question.Answer3}" Style="{StaticResource AnswerStyle}" />
-            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Question.Answer4}" Style="{StaticResource AnswerStyle}" />
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-        </Grid>
+                            <Entry Grid.Row="0" Grid.Column="0" Text="{Binding Answer1}" Placeholder="Enter Answer" Style="{StaticResource AnswerStyle}" />
+                            <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Answer2}" Placeholder="Enter Answer" Style="{StaticResource AnswerStyle}" />
+                            <Entry Grid.Row="1" Grid.Column="0" Text="{Binding Answer3}" Placeholder="Enter Answer" Style="{StaticResource AnswerStyle}" />
+                            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Answer4}" Placeholder="Enter Answer" Style="{StaticResource AnswerStyle}" />
 
-    </Grid>
-    
+                        </Grid>
+
+                    </Grid>
+
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <IndicatorView x:Name="indicatorView"
+                   IndicatorColor="Black"
+                   SelectedIndicatorColor="Purple"
+                   HorizontalOptions="Center" />
+    </StackLayout>
+
 </ContentPage>

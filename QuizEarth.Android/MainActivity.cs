@@ -23,6 +23,9 @@ namespace QuizEarth.Droid
             FormsGoogleMaps.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
 
+            Forms.SetFlags("IndicatorView_Experimental");
+            Forms.SetFlags("CarouselView_Experimental");
+
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

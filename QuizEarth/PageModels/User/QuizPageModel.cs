@@ -32,6 +32,9 @@ namespace QuizEarth.PageModels.User
 
         public ICommand AnswerTapCommand { get; set; }
 
+        public float Percentage { get; set; }
+
+
         private void OnAnswerTap(object obj)
         {
             var question = GetNextQuestion();
@@ -46,7 +49,7 @@ namespace QuizEarth.PageModels.User
 
         private static Question GetNextQuestion()
         {
-            var question = new Question
+            var question = new Question(2)
             {
                 Answer1 = "Paris",
                 Answer2 = "London",
@@ -81,7 +84,7 @@ namespace QuizEarth.PageModels.User
 
         private void GetMockQuestions()
         {
-            var question = new Question
+            var question = new Question(2)
             {
                 Answer1 = "Uppsala",
                 Answer2 = "Stockholm",

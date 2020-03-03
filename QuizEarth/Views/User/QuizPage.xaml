@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="clr-namespace:QuizEarth.Models"
              xmlns:pageModels="clr-namespace:QuizEarth.PageModels.User;assembly=QuizEarth"
+             xmlns:controls="clr-namespace:QuizEarth.Controls"
              mc:Ignorable="d"
              x:Class="QuizEarth.Views.User.QuizPage"
              x:DataType="pageModels:QuizPageModel"
@@ -50,15 +51,27 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" Text="{Binding Question.Answer1}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding .}" Style="{StaticResource AnswerStyle}" />
-            <Button Grid.Row="0" Grid.Column="1" Text="{Binding Question.Answer2}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding .}" Style="{StaticResource AnswerStyle}" />
-            <Button Grid.Row="1" Grid.Column="0" Text="{Binding Question.Answer3}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding .}" Style="{StaticResource AnswerStyle}" />
-            <Button Grid.Row="1" Grid.Column="1" Text="{Binding Question.Answer4}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding .}" Style="{StaticResource AnswerStyle}" />
+            <Button Grid.Row="0" Grid.Column="0" Text="{Binding Question.Answer1}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding Question.Answer1}" Style="{StaticResource AnswerStyle}" />
+            <Button Grid.Row="0" Grid.Column="1" Text="{Binding Question.Answer2}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding Question.Answer2}" Style="{StaticResource AnswerStyle}" />
+            <Button Grid.Row="1" Grid.Column="0" Text="{Binding Question.Answer3}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding Question.Answer3}" Style="{StaticResource AnswerStyle}" />
+            <Button Grid.Row="1" Grid.Column="1" Text="{Binding Question.Answer4}" Command="{Binding AnswerTapCommand}" CommandParameter="{Binding Question.Answer4}" Style="{StaticResource AnswerStyle}" />
 
         </Grid>
 
         <StackLayout Grid.Row="2">
-            <Label Text="Place Timer here" />
+            <controls:GradientProgressBar
+   x:Name="ProgressBar"
+   AlternativeTextColor="#0463E1"
+   BarBackgroundColor="#bcd8f6"
+   CornerRadius="6"
+   FontSize="18"
+   GradientEndColor="#a98af6"
+   GradientStartColor="#398efe"
+   HeightRequest="30"
+   Percentage="{Binding Percentage}"
+   TextColor="White" />
+
+
             <Label Text="Place Quiz Counter here" />
         </StackLayout>
 

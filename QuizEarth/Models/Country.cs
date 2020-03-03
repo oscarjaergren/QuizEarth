@@ -1,4 +1,4 @@
-﻿namespace QuizEarth.Controls.Map
+﻿namespace QuizEarth.Models
 {
     public class Country
     {

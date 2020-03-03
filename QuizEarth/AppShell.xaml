@@ -54,13 +54,13 @@
                           Icon="dog.png"
                           ContentTemplate="{DataTemplate local:RegistrationPage}" />
         </Tab>
-        
-  
+
+
         <ShellContent Route="monkeys"
                       Title="Admin"
                       Icon="monkey.png"
-                      ContentTemplate="{DataTemplate admin:AdminPage}" />
-        
+                      ContentTemplate="{DataTemplate admin:EditQuizPage}" />
+
         <ShellContent Route="elephants"
                       Title="Map"
                       Icon="elephant.png"
