@@ -11,7 +11,10 @@ namespace QuizEarth.PageModels.Admin
     {
         private string countryId;
 
+        public ICommand OnAddLastQuestionCommand { get; set; }
+
         public ICommand AnswerTapCommand { get; set; }
+
 
         public AdminPageModel()
         {
@@ -19,12 +22,21 @@ namespace QuizEarth.PageModels.Admin
 
             FillQuestions(1);
 
-            AnswerTapCommand = new Command<string>(OnAnswerTap);
+            AnswerTapCommand = new Command(OnSaveAnswers);
+            OnAddLastQuestionCommand = new Command(OnAddLastQuestion);
+
+        }
+
+        private void OnAddLastQuestion()
+        {
+            Int32.TryParse("-105", out int countryId);
+            var question = new Question(countryId);
+            Questions.Add(question);
         }
 
         private void FillQuestions(int countryId)
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 10; i++)
             {
                 var question = new Question(countryId);
                 Questions.Add(question);
@@ -37,10 +49,15 @@ namespace QuizEarth.PageModels.Admin
             set => countryId = Uri.UnescapeDataString(value);
         }
 
-        private void OnAnswerTap(object obj)
+        private void OnSaveAnswers()
         {
 
-           //Move ahead in carouselList
+           
+            //Save coountry
+
+
+            //Save questions
+            //App.Database.SaveQuestions(CountryId., Questions);
         }
 
         public Question CurrentQuestion { get; set; }

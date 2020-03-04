@@ -31,6 +31,11 @@ namespace QuizEarth.Data
                 }
         }
 
+        internal void SaveQuestions(int countryId, List<Question> questions)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<Question>> GetItemsAsync()
         {
             return Database.Table<Question>().ToListAsync();

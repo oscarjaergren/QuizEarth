@@ -30,8 +30,8 @@
     </ContentPage.Resources>
 
     <StackLayout>
-        <CarouselView ItemsSource="{Binding Questions}" IndicatorView="indicatorView" >
-            <CarouselView.ItemTemplate>
+        <CollectionView ItemsSource="{Binding Questions}" RemainingItemsThresholdReachedCommand="{Binding AnswerTapCommand}" RemainingItemsThreshold="1">
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Question">
 
                     <Grid>
@@ -62,12 +62,12 @@
                     </Grid>
 
                 </DataTemplate>
-            </CarouselView.ItemTemplate>
-        </CarouselView>
-        <IndicatorView x:Name="indicatorView"
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!--<IndicatorView x:Name="indicatorView"
                    IndicatorColor="Black"
                    SelectedIndicatorColor="Purple"
-                   HorizontalOptions="Center" />
+                   HorizontalOptions="Center" />-->
     </StackLayout>
 
 </ContentPage>
