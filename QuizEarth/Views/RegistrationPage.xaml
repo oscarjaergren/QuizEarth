@@ -7,26 +7,25 @@
              mc:Ignorable="d"
              x:Class="QuizEarth.Views.RegistrationPage"             
              x:DataType="pageModels:LoginPageModel"
-             Visual="Material">
+             Visual="Material"
+             Style="{StaticResource PageStyle}">
 
     <ContentPage.BindingContext>
         <pageModels:LoginPageModel />
     </ContentPage.BindingContext>
 
-    <StackLayout VerticalOptions="CenterAndExpand" Padding="5">
-        <StackLayout Orientation="Horizontal">
-            <Entry Placeholder="First Name"></Entry>
-            <Entry Placeholder="Last Name"></Entry>
-        </StackLayout>
-        <Entry Placeholder="Email"></Entry>
-        <Entry Placeholder="Password" IsPassword="True"></Entry>
-        <Entry Placeholder="Confirm Password" IsPassword="True"></Entry>
-        <Label Text="Date Of Birth"></Label>
-        <DatePicker></DatePicker>
-        <Label Text="Address"></Label>
-        <Editor></Editor>
-        <Button Text="Sign Up"></Button>
-        <Label Text="Already have account? Sign In" TextColor="Blue"></Label>
+    <StackLayout VerticalOptions="CenterAndExpand" Margin="30">
+
+        <Label Text="sign up" Style="{StaticResource LabelStyle}" HorizontalTextAlignment="Center" />
+
+        <Entry Placeholder="Email" Text="{Binding UserName}" Style="{StaticResource EntryStyle}" />
+
+        <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" Style="{StaticResource EntryStyle}"/>
+
+        <Entry Placeholder="Confirm Password" IsPassword="True" Style="{StaticResource EntryStyle}"/>
+
+        <Button Text="Register" Command="{Binding RegisterCommand}" Style="{StaticResource ButtonStyle}"/>
+
     </StackLayout>
     
 </ContentPage>

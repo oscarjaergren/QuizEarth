@@ -1,70 +1,82 @@
-﻿using GeoJSON.Net.Feature;
-using MvvmHelpers.Commands;
-using Newtonsoft.Json;
-using QuizEarth.Helpers;
-using QuizEarth.Models;
-using QuizEarth.Views.Admin;
+﻿using QuizEarth.Models;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace QuizEarth.PageModels.Admin
 {
-    public class EditQuizPageModel : BaseViewModel
+    [QueryProperty("CountryId", "countryId")]
+    public class EditQuizPageModel
     {
-        private static Country selectedCountry;
+        private string countryId;
 
-        public List<Country> Countries { get; private set; }
+        public ICommand AddQuestionCommand { get; set; }
 
-        private async Task OnGoToEditQuiz()
-        {
-            if (SelectedCountry != null)
-            {
-                Routing.RegisterRoute("adminPage", typeof(AdminPage));
-                await Shell.Current.GoToAsync($"adminPage?countryId={SelectedCountry.Id}").ConfigureAwait(false);
-            }
-        }
+        public ICommand SaveQuizCommand { get; set; }
 
-        /// <summary> Gets or sets the selected video. </summary>
-        public Country SelectedCountry
-        {
-            get => selectedCountry;
-            set => SetProperty(ref selectedCountry, value);
-        }
+        public ICommand DeleteQuestionCommand { get; set; }
 
-        public ICommand GoToEditQuizCommand => new AsyncCommand(OnGoToEditQuiz);
 
 
         public EditQuizPageModel()
         {
-            Countries = GetCountries();
+            Questions = new ObservableCollection<Question>();
+
+            FillQuestions(1);
+
+            SaveQuizCommand = new Command(OnSaveAnswers);
+            AddQuestionCommand = new Command(OnAddQuestion);
+            DeleteQuestionCommand = new Command(OnDeleteQuestion);
         }
 
-        private string ReadCountryGeoJson()
+        private void OnDeleteQuestion(object obj)
         {
-            var assembly = typeof(App).Assembly;
-            var stream = assembly.GetManifestResourceStream("QuizEarth.Resources.countries.geo.json");
-            if (stream == null) throw new InvalidOperationException("Countries GeoJSON resource file missing");
-            using (var reader = new StreamReader(stream))
+            if (!(obj is Question question))
             {
-                return reader.ReadToEnd();
+                return;
+            }
+            Questions.Remove(question);
+        }
+
+        private void OnAddQuestion()
+        {
+            Int32.TryParse(CountryId, out int countryId);
+            var question = new Question(countryId);
+            Questions.Add(question);
+        }
+
+        private void FillQuestions(int countryId)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                var question = new Question(countryId);
+                Questions.Add(question);
             }
         }
 
-        public List<Country> GetCountries()
+        public string CountryId
         {
-            var items = JsonConvert.DeserializeObject<FeatureCollection>(ReadCountryGeoJson());
-            var items2 = items.Features
-                    .Select(f => new Country(f.Id, f.Properties["name"].ToString()))
-                    .OrderBy(c => c.Name)
-                    .ToList();
-
-            return items2;
+            get => countryId;
+            set => countryId = Uri.UnescapeDataString(value);
         }
+
+        private void OnSaveAnswers()
+        {
+            Int32.TryParse(CountryId, out int countryId);
+
+            //Validate Quiz
+
+            //Update quiz status if valid
+            App.Database.UpdateQuizStatus(countryId, true);
+
+            //Save Questions
+            App.Database.SaveQuestions(countryId, Questions);
+        }
+
+        public Question CurrentQuestion { get; set; }
+
+        public ObservableCollection<Question> Questions { get; set; }
+
     }
 }

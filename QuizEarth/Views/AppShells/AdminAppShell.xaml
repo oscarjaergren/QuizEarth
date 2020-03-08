@@ -4,8 +4,10 @@
        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        mc:Ignorable="d"
-       x:Class="QuizEarth.Views.AuthenticationAppShell"
-       xmlns:local="clr-namespace:QuizEarth.Views">
+       x:Class="QuizEarth.Views.AppShells.AdminAppShell" 
+       xmlns:local="clr-namespace:QuizEarth.Views"
+       xmlns:admin="clr-namespace:QuizEarth.Views.Admin"
+       xmlns:user="clr-namespace:QuizEarth.Views.User">
 
     <!--Styles and Resources-->
     <Shell.Resources>
@@ -26,18 +28,35 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <!-- Your Pages -->
-    <Tab Title="Authentication"
-             Route="authentication"
-             Icon="paw.png">
-        <ShellContent Route="login"
-                          Title="Login"
-                          Icon="cat.png"
-                          ContentTemplate="{DataTemplate local:LoginPage}" />
-        <ShellContent Route="registration"
-                          Title="Registration"
-                          Icon="dog.png"
-                          ContentTemplate="{DataTemplate local:RegistrationPage}" />
-    </Tab>
+    <FlyoutItem Route="animals"
+                Title="Options"
+                FlyoutDisplayOptions="AsMultipleItems">
+        
+        <ShellContent Route="quizList"
+                      Title="Admin"
+                      Icon="monkey.png"
+                      ContentTemplate="{DataTemplate admin:QuizListPage}" />
+
+        <ShellContent Route="map"
+                      Title="Map"
+                      Icon="elephant.png"
+                      ContentTemplate="{DataTemplate user:MapPage}" />
+
+        <ShellContent Route="monkeys"
+                      Title="Quiz"
+                      Icon="monkey.png"
+                      ContentTemplate="{DataTemplate user:QuizPage}" />
+
+        <ShellContent Route="bears"
+                      Title="Leaderboard"
+                      Icon="bear.png"
+                      ContentTemplate="{DataTemplate user:LeaderboardPage}" />
+
+        <ShellContent Route="settings"
+                      Title="Settings"
+                      Icon="settingsIcon.png"
+                      ContentTemplate="{DataTemplate user:SettingsPage}" />
+        
+    </FlyoutItem>
 
 </Shell>

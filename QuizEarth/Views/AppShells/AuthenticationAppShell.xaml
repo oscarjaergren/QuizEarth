@@ -1,27 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        mc:Ignorable="d"
-       xmlns:local="clr-namespace:QuizEarth.Views"
-       xmlns:admin="clr-namespace:QuizEarth.Views.Admin"
-       xmlns:user="clr-namespace:QuizEarth.Views.User"
+       x:Class="QuizEarth.Views.AppShells.AuthenticationAppShell"
+       xmlns:local="clr-namespace:QuizEarth.Views">
 
-       
-       Title="QuizEarth"
-       x:Class="QuizEarth.AppShell"
-       Navigating="OnNavigating"
-       Navigated="OnNavigated"
-       >
-
-    <!-- 
-        Styles and Resources 
-    -->
+    <!--Styles and Resources-->
     <Shell.Resources>
         <ResourceDictionary>
-            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="NavigationPrimary">#02808F</Color>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
@@ -37,44 +26,22 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <!-- Your Pages -->
+    
+    <TabBar>
+        <Tab
+            Title="Authentication"
+            Route="authentication"
+            Icon="paw.png">
 
-    <FlyoutItem Route="animals"
-                Title="Options"
-                FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="Domestic"
-             Route="domestic"
-             Icon="paw.png">
-            <ShellContent Route="cats"
+            <ShellContent Route="login"
                           Title="Login"
                           Icon="cat.png"
                           ContentTemplate="{DataTemplate local:LoginPage}" />
-            <ShellContent Route="dogs"
+            <ShellContent Route="registration"
                           Title="Registration"
                           Icon="dog.png"
                           ContentTemplate="{DataTemplate local:RegistrationPage}" />
         </Tab>
-
-
-        <ShellContent Route="monkeys"
-                      Title="Admin"
-                      Icon="monkey.png"
-                      ContentTemplate="{DataTemplate admin:EditQuizPage}" />
-
-        <ShellContent Route="elephants"
-                      Title="Map"
-                      Icon="elephant.png"
-                      ContentTemplate="{DataTemplate user:MapPage}" />
-        
-        <ShellContent Route="monkeys"
-                      Title="Quiz"
-                      Icon="monkey.png"
-                      ContentTemplate="{DataTemplate user:QuizPage}" />
-        
-        <ShellContent Route="bears"
-                      Title="Leaderboard"
-                      Icon="bear.png"
-                      ContentTemplate="{DataTemplate user:LeaderboardPage}" />
-    </FlyoutItem>
+    </TabBar>
 
 </Shell>

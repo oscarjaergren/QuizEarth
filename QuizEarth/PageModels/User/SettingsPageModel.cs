@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using QuizEarth.Views.AppShells;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

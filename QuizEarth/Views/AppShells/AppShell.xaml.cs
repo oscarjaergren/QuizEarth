@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace QuizEarth
+namespace QuizEarth.Views.AppShells
 {
     public partial class AppShell : Shell
     {

@@ -6,16 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.440" />
     <PackageReference Include="GeoJSON.Net" Version="1.2.15" />
     <PackageReference Include="Refractored.MvvmHelpers" Version="1.6.1-beta" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
-    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.1.1" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.2-preview.39" />
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
     <PackageReference Include="System.Text.Json" Version="4.7.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.0" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.379-pre1" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />  
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />  
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.5.0.356" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.6.0.379-pre1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,13 +27,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\Admin\EditQuizPage.xaml">
+    <Compile Update="Views\Admin\EditQuizPage.xaml.cs">
+      <DependentUpon>EditQuizPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Admin\QuizListPage.xaml.cs">
+      <DependentUpon>QuizListPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\Admin\QuizListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AppShells\AdminAppShell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AppShells\AuthenticationAppShell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RegistrationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\User\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

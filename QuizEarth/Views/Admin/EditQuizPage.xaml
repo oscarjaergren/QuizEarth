@@ -1,47 +1,94 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:admin="clr-namespace:QuizEarth.PageModels.Admin"
+             xmlns:admin="clr-namespace:QuizEarth.PageModels.Admin;assembly=QuizEarth"
              xmlns:models="clr-namespace:QuizEarth.Models"
-             mc:Ignorable="d"
-             x:Class="QuizEarth.Views.Admin.EditQuizPage"             
+             x:Class="QuizEarth.Views.Admin.EditQuizPage"  
              x:DataType="admin:EditQuizPageModel"
-             Visual="Material">
-
+             Visual="Material"
+             Style="{StaticResource PageStyle}">
+    
     <ContentPage.BindingContext>
-        <admin:EditQuizPageModel  x:Name="MyEditQuizPageModel"/>
+        <admin:EditQuizPageModel x:Name="MyEditQuizPageModel"/>
     </ContentPage.BindingContext>
 
-    <CollectionView ItemsSource="{Binding Countries}"   
-                    SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
-                    SelectionMode="Single"
-                    SelectionChangedCommand="{Binding GoToEditQuizCommand}">
-        <CollectionView.ItemTemplate  >
-            <DataTemplate x:DataType="models:Country">
-                <Grid Padding="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                   
-                    <Label Grid.Column="0"
-                       Text="{Binding Id}"
-                       FontAttributes="Bold" />
-                    
-                    <Label 
-                       Grid.Column="1"
-                       Text="{Binding Name}"
-                       FontAttributes="Italic"
-                       VerticalOptions="End" />
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
 
+            <Style x:Key="QuestionStyle" TargetType="Entry">
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="AnswerStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="Green" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout >
+        <Label Text="{Binding CountryId}" TextColor="Black"/>
+
+        <CollectionView ItemsSource="{Binding Questions}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Question">
+
+                    <Frame BorderColor="Black">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.3*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="0.2*" />
+                            </Grid.ColumnDefinitions>
+
+
+                            <Entry Grid.Row="0" Text="{Binding QuestionText}" Placeholder="Enter Question" Style="{StaticResource QuestionStyle}" />
+                            
+                            <ImageButton Grid.Row="0" Grid.Column="1" 
+                                         Style="{StaticResource QuestionStyle}" 
+                                         Source="GarbageIcon.png"
+                                         Command="{Binding Path=DeleteQuestionCommand, Source={x:Reference MyEditQuizPageModel}}"
+                                         CommandParameter="{Binding .}"/>
+
+                            <Frame Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" BorderColor="Black" Padding="0" Margin="0">
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Entry Grid.Row="0" Grid.Column="0" Text="{Binding Answer1}" Placeholder="Enter Answer" Style="{StaticResource AnswerStyle}" />
+                                    <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Answer2}" Placeholder="Enter Answer" Style="{StaticResource AnswerStyle}" />
+                                    <Entry Grid.Row="1" Grid.Column="0" Text="{Binding Answer3}" Placeholder="Enter Answer" Style="{StaticResource AnswerStyle}" />
+                                    <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Answer4}" Placeholder="Enter Answer" Style="{StaticResource AnswerStyle}" />
+                                </Grid>
+                            </Frame>
+
+                        
+                        </Grid>
+                    </Frame>
+                    
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <StackLayout>
+                    <Button Text="Add Question" Command="{Binding AddQuestionCommand}"/>
+                    <Button Text="Save Quiz" Command="{Binding SaveQuizCommand}"/>
+                </StackLayout>
+            </CollectionView.Footer>
+        </CollectionView>
+      
+    </StackLayout>
 
 </ContentPage>

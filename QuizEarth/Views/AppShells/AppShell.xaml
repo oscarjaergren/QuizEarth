@@ -10,10 +10,9 @@
        xmlns:user="clr-namespace:QuizEarth.Views.User"
 
        Title="QuizEarth"
-       x:Class="QuizEarth.AppShell"
+       x:Class="QuizEarth.Views.AppShells.AppShell"
        Navigating="OnNavigating"
-       Navigated="OnNavigated"
-       >
+       Navigated="OnNavigated">
 
     <!--Styles and Resources-->
     <Shell.Resources>
@@ -30,7 +29,7 @@
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarTitleColor" Value="White" />
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="ShellContent" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
     

@@ -15,7 +15,7 @@
         <pageModels:SettingsPageModel />
     </ContentPage.BindingContext>
 
-    <StackLayout>
+    <StackLayout >
         
         <Label Text="Welcome to your settings page!" />
 

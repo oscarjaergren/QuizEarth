@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using MvvmHelpers;
 using Xamarin.Essentials;
 
 namespace QuizEarth.Data
@@ -28,8 +30,11 @@ namespace QuizEarth.Data
             {
                 DatabaseIsInitialized = false;
                 SecureStorage.SetAsync("IsInitalized", "1").ConfigureAwait(false);
+
+                App.Database.InitializeAsync().SafeFireAndForget();
+
                 PopulateCountriesIntoDatabase();
-                CreateAdminUser();
+                CreateAdminUser().SafeFireAndForget();
                 CreateQuestions();
             }
         }
@@ -56,10 +61,10 @@ namespace QuizEarth.Data
             App.Database.InsertQuestions(questions);
         }
 
-        private static void CreateAdminUser()
+        private static async Task CreateAdminUser()
         {
             var user = new User("admin", "admin", true);
-            App.Database.InsertUser(user);
+            await App.Database.InsertUser(user);
         }
 
 

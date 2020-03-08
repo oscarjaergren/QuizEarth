@@ -9,12 +9,19 @@ namespace QuizEarth.Models
             (Id, Name) = (id, name);
         }
 
+        public Country()
+        {
+
+        }
+
         [PrimaryKey, AutoIncrement]
         public string Id { get; }
 
         public string Name { get; }
 
         public CountryStatus CountryStatus { get; set; }
+
+        public bool HasQuiz { get; set; }
     }
 
     public enum CountryStatus
@@ -22,7 +29,7 @@ namespace QuizEarth.Models
         NotAttempted = 0,
         Tuesday = 1,
         Wednesday = 2,
-        Thursday = 3,   
+        Thursday = 3,
         MaxScore = 4,
     }
 }

@@ -43,10 +43,10 @@
                             <DataTrigger TargetType="Label" Binding="{Binding HasQuiz}" Value="false">
                                 <Setter Property="Text"  Value="No Quiz" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsActive}" Value="true">
+                            <DataTrigger TargetType="Label" Binding="{Binding HasQuiz}" Value="true">
                                 <Setter Property="Text"  Value="Has Quiz" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding IsActive}" Value="true">
+                            <DataTrigger TargetType="Label" Binding="{Binding HasQuiz}" Value="true">
                                 <Setter Property="TextColor"  Value="Green" />
                             </DataTrigger>
                         </Label.Triggers>

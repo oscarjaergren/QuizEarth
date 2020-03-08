@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
@@ -25,6 +26,8 @@ namespace QuizEarth.Droid
 
             Forms.SetFlags("IndicatorView_Experimental");
             Forms.SetFlags("CarouselView_Experimental");
+
+            UserDialogs.Init(this);
 
             Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);

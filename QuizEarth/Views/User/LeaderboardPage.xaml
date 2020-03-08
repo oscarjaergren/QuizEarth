@@ -1,21 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="QuizEarth.Views.User.LeaderboardPage"
-             xmlns:pageModels="clr-namespace:QuizEarth.PageModels;assembly=QuizEarth"
-             Title="{Binding Title}">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pageModels="clr-namespace:QuizEarth.PageModels.User"
+    xmlns:models="clr-namespace:QuizEarth.Models"
+    mc:Ignorable="d"
+    x:Class="QuizEarth.Views.User.LeaderboardPage"
+    x:DataType="pageModels:LeaderboardPageModel"
+    Visual="Material"
+    Style="{StaticResource PageStyle}">
 
-    <StackLayout
-        Orientation="Vertical">
-        <ListView
-            ItemsSource="{Binding TopScores}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
+    <ContentPage.BindingContext>
+        <pageModels:LeaderboardPageModel />
+    </ContentPage.BindingContext>
+    
+    <StackLayout Orientation="Vertical">
+        <CollectionView ItemsSource="{Binding ScoreboardList}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate  x:DataType="models:Scoreboard">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
@@ -24,29 +29,21 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Label
-                                Text="{Binding Score}" />
+                            <Label Text="{Binding Score}" />
 
-                            <Label
-                                Grid.Column="1"
-                                Text="{Binding RightAnswers}" />
+                            <Label Grid.Column="1" Text="{Binding UserId}" />
 
-                            <Label
-                                Grid.Column="2"
-                                Text="{Binding Date}" />
+                            <Label Grid.Column="2" Text="{Binding CountryId}" />
 
-                            <Label
-                                Grid.Column="3"
-                                Text="{Binding TimeInGame, Converter={StaticResource timeSpanToString}}" />
+                            <Label Grid.Column="3" Text="{Binding Score}" />
+                            
                         </Grid>
-                    </ViewCell>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-        <Button
-            Text="Back"
-            Command="{Binding GoBackCmd}" />
+        <Button Text="Back To Map" Command="{Binding ReturnToMapCommand}" BackgroundColor="#02808F" />
+        
     </StackLayout>
 
 </ContentPage>

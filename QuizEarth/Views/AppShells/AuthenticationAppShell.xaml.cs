@@ -1,12 +1,12 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace QuizEarth.Views.Admin
+namespace QuizEarth.Views.AppShells
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AdminPage : ContentPage
+    public partial class AuthenticationAppShell : Shell
     {
-        public AdminPage()
+        public AuthenticationAppShell()
         {
             InitializeComponent();
         }

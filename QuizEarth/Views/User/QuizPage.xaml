@@ -10,7 +10,8 @@
              mc:Ignorable="d"
              x:Class="QuizEarth.Views.User.QuizPage"
              x:DataType="pageModels:QuizPageModel"
-             Visual="Material">
+             Visual="Material"
+             Style="{StaticResource PageStyle}">
 
     <ContentPage.BindingContext>
         <pageModels:QuizPageModel />

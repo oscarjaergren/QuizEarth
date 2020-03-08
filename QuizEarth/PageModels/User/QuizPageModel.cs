@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using QuizEarth.Models;
 using Xamarin.Forms;
@@ -11,14 +12,14 @@ namespace QuizEarth.PageModels.User
 
         public QuizPageModel()
         {
-            AnsweredQuestions = new ObservableCollection<Question>();
+            Questions = new List<Question>();
 
             GetQuestions();
 
             AnswerTapCommand = new Command<string>(OnAnswerTap);
         }
 
-        public ObservableCollection<Question> AnsweredQuestions { get; }
+        public List<Question> Questions { get; set; }
 
         public Question Question
         {
@@ -40,27 +41,17 @@ namespace QuizEarth.PageModels.User
             var question = GetNextQuestion();
 
             // Keep track of already answered questions so they won't be asked again
-            AnsweredQuestions.Add(Question);
+            Questions.Add(Question);
 
             CheckResult(obj.ToString());
-            
+
             Question = question;
         }
 
-        private static Question GetNextQuestion()
+        private Question GetNextQuestion()
         {
-            var question = new Question(2)
-            {
-                Answer1 = "Paris",
-                Answer2 = "London",
-                Answer3 = "Göteborg",
-                Answer4 = "Malmö",
-                CorrectAnswer = "London",
-                QuestionText = "What is the capital of England?",
-                CountryId = 2,
-                ID = 2
-            };
-            return question;
+            int index = Questions.IndexOf(Question);
+            return Questions[index + 1];
         }
 
         private void CheckResult(string answer)
@@ -76,28 +67,10 @@ namespace QuizEarth.PageModels.User
 
         private async void GetQuestions()
         {
-            Question = await App.Database.GetItemAsync(1);
+            var questions = await App.Database.GetQuestions(1);
+            Questions = new List<Question>(questions);
 
-
-            GetMockQuestions();
-        }
-
-        private void GetMockQuestions()
-        {
-            var question = new Question(2)
-            {
-                Answer1 = "Uppsala",
-                Answer2 = "Stockholm",
-                Answer3 = "Göteborg",
-                Answer4 = "Malmö",
-                CorrectAnswer = "Stockholm",
-                QuestionText = "What is the capital of Sweden?",
-                CountryId = 1,
-                ID = 1
-            };
-
-
-            Question = question;
+            Question = Questions[0];
         }
     }
 }
