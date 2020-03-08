@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:admin="clr-namespace:QuizEarth.PageModels.Admin"
+             xmlns:models="clr-namespace:QuizEarth.Models"
+             mc:Ignorable="d"
+             x:Class="QuizEarth.Views.Admin.QuizListPage"             
+             x:DataType="admin:QuizListPageModel"
+             Visual="Material"
+             Style="{StaticResource PageStyle}">
+
+    <ContentPage.BindingContext>
+        <admin:QuizListPageModel  x:Name="MyEditQuizPageModel"/>
+    </ContentPage.BindingContext>
+
+    <CollectionView ItemsSource="{Binding Countries}"   
+                    SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
+                    SelectionMode="Single"
+                    SelectionChangedCommand="{Binding GoToEditQuizCommand}">
+        <CollectionView.ItemTemplate  >
+            <DataTemplate x:DataType="models:Country">
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                   
+                    <Label Grid.Column="0"
+                       Text="{Binding Id}"/>
+                    
+                    <Label 
+                       Grid.Column="1"
+                       Text="{Binding Name}"
+                       VerticalOptions="End" />
+
+                    <Label Grid.Column="1" Text="NAN" TextColor="Red" >
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding HasQuiz}" Value="false">
+                                <Setter Property="Text"  Value="No Quiz" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Label" Binding="{Binding IsActive}" Value="true">
+                                <Setter Property="Text"  Value="Has Quiz" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Label" Binding="{Binding IsActive}" Value="true">
+                                <Setter Property="TextColor"  Value="Green" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+
+</ContentPage>
