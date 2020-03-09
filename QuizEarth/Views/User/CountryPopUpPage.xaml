@@ -10,12 +10,12 @@
     <StackLayout
         HeightRequest="200"
         WidthRequest="300"
-        BackgroundColor="White"
+        BackgroundColor="WhiteSmoke"
         VerticalOptions="Center"
         HorizontalOptions="Center"
         Padding="20, 20, 20, 20">
         <Label Text="You Clicked Sweden" />
-        <Button Text="START" Clicked="Button_OnClicked" />
+        <Button Text="START" Clicked="Button_OnClicked" Style="{StaticResource ButtonStyle}" />
 
     </StackLayout>
 </pages:PopupPage>

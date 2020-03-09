@@ -16,10 +16,10 @@
     </ContentPage.BindingContext>
 
     <StackLayout >
-        
-        <Label Text="Welcome to your settings page!" />
 
-        <Button Command="{Binding LogOutCommand}" BackgroundColor="Red" TextColor="Black" Text="LOG OUT"/>
+        <Label Text="Welcome to your settings page!" Style="{StaticResource LabelStyle}" />
+
+        <Button Text="LOG OUT" Command="{Binding LogOutCommand}" Style="{StaticResource ButtonStyle}"/>
 
     </StackLayout>
 

@@ -24,7 +24,22 @@
         </Style>
 
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="TextColor" Value="WhiteSmoke" />
+            <Setter Property="TextColor" Value="Green" />
+        </Style>
+
+        <Color x:Key="NavigationPrimary">#2E0854</Color>
+
+        <!--AppShell Styles-->
+        <Style x:Key="BaseStyle" TargetType="Element">
+            <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
+            <Setter Property="Shell.ForegroundColor" Value="WhiteSmoke" />
+            <Setter Property="Shell.TitleColor" Value="WhiteSmoke" />
+            <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+            <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+            <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+            <Setter Property="Shell.TabBarForegroundColor" Value="WhiteSmoke" />
+            <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
+            <Setter Property="Shell.TabBarTitleColor" Value="WhiteSmoke" />
         </Style>
 
 

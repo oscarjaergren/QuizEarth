@@ -8,57 +8,40 @@
        xmlns:local="clr-namespace:QuizEarth.Views"
        xmlns:admin="clr-namespace:QuizEarth.Views.Admin"
        xmlns:user="clr-namespace:QuizEarth.Views.User"
-
        Title="QuizEarth"
        x:Class="QuizEarth.Views.AppShells.AppShell"
        Navigating="OnNavigating"
        Navigated="OnNavigated">
 
-    <!--Styles and Resources-->
-    <Shell.Resources>
-        <ResourceDictionary>
-            <Color x:Key="NavigationPrimary">#02808F</Color>
-            <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
-                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarTitleColor" Value="White" />
-            </Style>
-            <Style TargetType="ShellContent" BasedOn="{StaticResource BaseStyle}" />
-        </ResourceDictionary>
-    </Shell.Resources>
-    
-    <!-- Your Pages -->
 
+    <!-- Your Pages -->
     <FlyoutItem Route="animals"
                 Title="Options"
                 FlyoutDisplayOptions="AsMultipleItems">
-     
+
         <ShellContent Route="map"
                       Title="Map"
                       Icon="elephant.png"
+                      Style="{StaticResource BaseStyle}"
                       ContentTemplate="{DataTemplate user:MapPage}" />
-        
+
         <ShellContent Route="monkeys"
                       Title="Quiz"
                       Icon="monkey.png"
+                      Style="{StaticResource BaseStyle}"
                       ContentTemplate="{DataTemplate user:QuizPage}" />
-        
+
         <ShellContent Route="bears"
                       Title="Leaderboard"
                       Icon="bear.png"
+                      Style="{StaticResource BaseStyle}"
                       ContentTemplate="{DataTemplate user:LeaderboardPage}" />
 
         <ShellContent Route="settings"
                       Title="Settings"
                       Icon="settingsIcon.png"
+                      Style="{StaticResource BaseStyle}"
                       ContentTemplate="{DataTemplate user:SettingsPage}" />
-
     </FlyoutItem>
 
 </Shell>

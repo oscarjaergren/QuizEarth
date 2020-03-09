@@ -93,7 +93,7 @@ namespace QuizEarth.Views.User
         private void HighlightAvailableCountries()
         {
             var country = Countries.First();
-            var country2 = Countries.FirstOrDefault(x => x.Id == "SE");
+            var country2 = Countries.FirstOrDefault(x => x.CountryId == "SE");
 
             AvailableCountries = new List<Country> {country, country2};
 
@@ -108,7 +108,7 @@ namespace QuizEarth.Views.User
             foreach (var availableCountry in AvailableCountries)
             {
                 var feature = _countryPolygons.Features.FirstOrDefault(f =>
-                    f.Id.Equals(availableCountry.Id, StringComparison.CurrentCultureIgnoreCase));
+                    f.Id.Equals(availableCountry.CountryId, StringComparison.CurrentCultureIgnoreCase));
 
                 if (feature == null) return;
 
@@ -195,7 +195,7 @@ namespace QuizEarth.Views.User
 
             var countryName = placemark.CountryCode;
 
-            var country = AvailableCountries.FirstOrDefault(x => x.Id == countryName);
+            var country = AvailableCountries.FirstOrDefault(x => x.CountryId == countryName);
 
             if (country != null)
             {

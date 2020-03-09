@@ -24,6 +24,7 @@
                 <Setter Property="FontSize" Value="26" />
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="WhiteSmoke" />
             </Style>
 
             <Style x:Key="AnswerStyle" TargetType="Button">

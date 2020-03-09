@@ -29,14 +29,15 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout >
-        <Label Text="{Binding CountryId}" TextColor="Black"/>
+    <StackLayout>
+
+        <Label Text="{Binding CountryId}" TextColor="WhiteSmoke" />
 
         <CollectionView ItemsSource="{Binding Questions}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Question">
 
-                    <Frame BorderColor="Black">
+                    <Frame BorderColor="Black" Padding="0" Margin="0" HeightRequest="300">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.3*" />
@@ -47,11 +48,9 @@
                                 <ColumnDefinition Width="0.2*" />
                             </Grid.ColumnDefinitions>
 
-
                             <Entry Grid.Row="0" Text="{Binding QuestionText}" Placeholder="Enter Question" Style="{StaticResource QuestionStyle}" />
                             
                             <ImageButton Grid.Row="0" Grid.Column="1" 
-                                         Style="{StaticResource QuestionStyle}" 
                                          Source="GarbageIcon.png"
                                          Command="{Binding Path=DeleteQuestionCommand, Source={x:Reference MyEditQuizPageModel}}"
                                          CommandParameter="{Binding .}"/>
@@ -73,18 +72,15 @@
                                     <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Answer4}" Placeholder="Enter Answer" Style="{StaticResource AnswerStyle}" />
                                 </Grid>
                             </Frame>
-
-                        
                         </Grid>
                     </Frame>
-                    
-
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
             <CollectionView.Footer>
                 <StackLayout>
-                    <Button Text="Add Question" Command="{Binding AddQuestionCommand}"/>
-                    <Button Text="Save Quiz" Command="{Binding SaveQuizCommand}"/>
+                    <Button Text="Add Question" Command="{Binding AddQuestionCommand}" Style="{StaticResource ButtonStyle}"/>
+                    <Button Text="Save Quiz" Command="{Binding SaveQuizCommand}" Style="{StaticResource ButtonStyle}"/>
                 </StackLayout>
             </CollectionView.Footer>
         </CollectionView>

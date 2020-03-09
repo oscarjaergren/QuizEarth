@@ -21,7 +21,7 @@
         <CollectionView ItemsSource="{Binding ScoreboardList}">
             <CollectionView.ItemTemplate>
                 <DataTemplate  x:DataType="models:Scoreboard">
-                        <Grid>
+                        <Grid BackgroundColor="WhiteSmoke">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
@@ -29,20 +29,20 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding Score}" />
+                        <Label Text="{Binding Score}" Style="{StaticResource LabelStyle}" />
 
-                            <Label Grid.Column="1" Text="{Binding UserId}" />
+                        <Label Grid.Column="1" Text="{Binding UserId}" Style="{StaticResource LabelStyle}" />
 
-                            <Label Grid.Column="2" Text="{Binding CountryId}" />
+                        <Label Grid.Column="2" Text="{Binding CountryId}" Style="{StaticResource LabelStyle}" />
 
-                            <Label Grid.Column="3" Text="{Binding Score}" />
+                        <Label Grid.Column="3" Text="{Binding Score}" Style="{StaticResource LabelStyle}"  />
                             
                         </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Text="Back To Map" Command="{Binding ReturnToMapCommand}" BackgroundColor="#02808F" />
+        <Button Text="Back To Map" Command="{Binding ReturnToMapCommand}" Style="{StaticResource ButtonStyle}" />
         
     </StackLayout>
 

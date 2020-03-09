@@ -2,12 +2,13 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using Xamarin.Forms;
 
 namespace QuizEarth.PageModels.Admin
 {
     [QueryProperty("CountryId", "countryId")]
-    public class EditQuizPageModel
+    public class EditQuizPageModel : BaseViewModel
     {
         private string countryId;
 
@@ -17,13 +18,13 @@ namespace QuizEarth.PageModels.Admin
 
         public ICommand DeleteQuestionCommand { get; set; }
 
-
-
         public EditQuizPageModel()
         {
             Questions = new ObservableCollection<Question>();
 
-            FillQuestions(1);
+            Int32.TryParse(CountryId, out int countryId);
+
+            FillQuestions(countryId);
 
             SaveQuizCommand = new Command(OnSaveAnswers);
             AddQuestionCommand = new Command(OnAddQuestion);
@@ -36,6 +37,15 @@ namespace QuizEarth.PageModels.Admin
             {
                 return;
             }
+
+            // Must be minimum 10 questions
+            if (Questions.Count == 10)
+            {
+                 UserDialogs.Instance.AlertAsync("Sorry, the minimum is 10 questions",
+                    "Sorry", "OK");
+                return;
+            }
+
             Questions.Remove(question);
         }
 
@@ -58,7 +68,11 @@ namespace QuizEarth.PageModels.Admin
         public string CountryId
         {
             get => countryId;
-            set => countryId = Uri.UnescapeDataString(value);
+            set
+            {
+                countryId = Uri.UnescapeDataString(value);
+                SetProperty(ref countryId, value);
+            }
         }
 
         private void OnSaveAnswers()
@@ -74,9 +88,6 @@ namespace QuizEarth.PageModels.Admin
             App.Database.SaveQuestions(countryId, Questions);
         }
 
-        public Question CurrentQuestion { get; set; }
-
         public ObservableCollection<Question> Questions { get; set; }
-
     }
 }

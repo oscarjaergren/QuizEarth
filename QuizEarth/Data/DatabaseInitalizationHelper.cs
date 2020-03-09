@@ -42,6 +42,7 @@ namespace QuizEarth.Data
         private static void CreateQuestions()
         {
             var questions = new List<Question>();
+            var countryid = 1;
 
             for (int i = 0; i < 10; i++)
             {
@@ -53,12 +54,14 @@ namespace QuizEarth.Data
                     Answer4 = "Malmö",
                     CorrectAnswer = "Stockholm",
                     QuestionText = "What is the capital of Sweden?",
-                    CountryId = 1,
+                    CountryId = countryid,
                 };
                 questions.Add(question);
             }
 
             App.Database.InsertQuestions(questions);
+            App.Database.UpdateQuizStatus(countryid, true);
+
         }
 
         private static async Task CreateAdminUser()

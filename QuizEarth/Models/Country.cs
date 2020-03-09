@@ -1,12 +1,16 @@
-﻿using SQLite;
+﻿using QuizEarth.PageModels;
+using SQLite;
 
 namespace QuizEarth.Models
 {
-    public class Country
+    public class Country : BaseViewModel
     {
-        public Country(string id, string name)
+        private string name;
+        private string countryId;
+
+        public Country(string countryId, string name)
         {
-            (Id, Name) = (id, name);
+            (CountryId, Name) = (countryId, name);
         }
 
         public Country()
@@ -15,9 +19,19 @@ namespace QuizEarth.Models
         }
 
         [PrimaryKey, AutoIncrement]
-        public string Id { get; }
+        public int Id { get; set; }
 
-        public string Name { get; }
+        public string CountryId
+        {
+            get => countryId;
+            set => SetProperty(ref countryId, value);
+        }
+
+        public string Name
+        {
+            get => name;
+            set => SetProperty(ref name, value);
+        }
 
         public CountryStatus CountryStatus { get; set; }
 

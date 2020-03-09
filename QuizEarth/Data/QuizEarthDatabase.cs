@@ -75,9 +75,10 @@ namespace QuizEarth.Data
         public Task<List<Question>> GetQuestions(int countryId)
         {
             //SELECT * FROM table WHERE id IN (SELECT id FROM table ORDER BY RANDOM() LIMIT x) 
+            return Database.Table<Question>().ToListAsync();
 
-            var randomrec = Database.Table<Question>().Where(x => true).OrderBy(x => Guid.NewGuid()).Take(10);
-            return Database.Table<Question>().Where(x => true).OrderBy(x => Guid.NewGuid()).Take(10).ToListAsync();
+
+            //return Database.Table<Question>().Where(x => true).OrderBy(x => Guid.NewGuid()).Take(10).ToListAsync();
         }
 
         internal Task UpdateQuizStatus(int countryId, bool hasQuiz)

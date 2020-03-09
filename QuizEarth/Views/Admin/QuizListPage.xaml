@@ -26,22 +26,22 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                   
-                    <Label Grid.Column="0"
-                       Text="{Binding Id}"/>
-                    
-                    <Label 
-                       Grid.Column="1"
-                       Text="{Binding Name}"
-                       VerticalOptions="End" />
 
-                    <Label Grid.Column="1" Text="NAN" TextColor="Red" >
+                    <Label Grid.Column="0" Text="{Binding Id}" />
+
+                    <Label Grid.Column="1" Text="{Binding CountryId}" />
+
+                    <Label Grid.Column="2" Text="{Binding Name}" />
+
+                    <Label Grid.Column="3" Text="NAN" TextColor="Red" >
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Binding="{Binding HasQuiz}" Value="false">
-                                <Setter Property="Text"  Value="No Quiz" />
+                                <Setter Property="Text" Value="No Quiz" />
                             </DataTrigger>
                             <DataTrigger TargetType="Label" Binding="{Binding HasQuiz}" Value="true">
                                 <Setter Property="Text"  Value="Has Quiz" />
