@@ -74,16 +74,18 @@ namespace QuizEarth.Data
 
         public Task<List<Question>> GetQuestions(int countryId)
         {
-            //SELECT * FROM table WHERE id IN (SELECT id FROM table ORDER BY RANDOM() LIMIT x) 
-            return Database.Table<Question>().ToListAsync();
-
-
-            //return Database.Table<Question>().Where(x => true).OrderBy(x => Guid.NewGuid()).Take(10).ToListAsync();
+            //Returns 10 random questions from the database
+           return Database.QueryAsync<Question>("SELECT * FROM Question WHERE CountryId = ? ORDER BY RANDOM() LIMIT 10", countryId);
         }
 
-        internal Task UpdateQuizStatus(int countryId, bool hasQuiz)
+        internal Task<List<Country>> GetQuizCountries()
         {
-            return Database.UpdateAsync("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+            return Database.QueryAsync<Country>("SELECT * FROM Country WHERE HasQuiz = 1");
+        }
+
+        internal Task UpdateQuizStatus(bool hasQuiz, int countryId)
+        {
+            return Database.ExecuteAsync("UPDATE Country SET HasQuiz = ? WHERE Id = ?", hasQuiz, countryId);
         }
 
         internal Task<User> GetUser(string username, string password)

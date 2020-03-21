@@ -32,7 +32,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidKeyStore>false</AndroidKeyStore>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\Jargar\OneDrive\Documents\QuizEarthAlias.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>QuizKey</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>QuizEarthAlias</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>QuizKey</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

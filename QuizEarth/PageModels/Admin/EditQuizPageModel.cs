@@ -82,7 +82,7 @@ namespace QuizEarth.PageModels.Admin
             //Validate Quiz
 
             //Update quiz status if valid
-            App.Database.UpdateQuizStatus(countryId, true);
+            App.Database.UpdateQuizStatus(true, countryId);
 
             //Save Questions
             App.Database.SaveQuestions(countryId, Questions);

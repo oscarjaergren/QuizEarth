@@ -12,7 +12,7 @@ namespace QuizEarth.Data
             var question1 = new Question
             {
                 QuestionText = "What is the capital of Sweden",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "Stockholm",
                 Answer2 = "Ikea",
                 Answer3 = "Gothenburg",
@@ -23,7 +23,7 @@ namespace QuizEarth.Data
             var question2 = new Question
             {
                 QuestionText = "Which awards take place every year in Stockholm?",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "Oscars",
                 Answer2 = "People’s Choice",
                 Answer3 = "Nobel",
@@ -34,7 +34,7 @@ namespace QuizEarth.Data
             var question3 = new Question
             {
                 QuestionText = "Which of these music acts are Swedish",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "David Bowie",
                 Answer2 = "ABBA",
                 Answer3 = "Fleetwood Mac",
@@ -45,7 +45,7 @@ namespace QuizEarth.Data
             var question4 = new Question
             {
                 QuestionText = "What is the Swedish currency",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "Krona",
                 Answer2 = "Euro",
                 Answer3 = "Pound",
@@ -56,7 +56,7 @@ namespace QuizEarth.Data
             var question5 = new Question
             {
                 QuestionText = "What is the Swedish population?",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "9.8 million",
                 Answer2 = "9.6 million",
                 Answer3 = "9.5 million",
@@ -67,7 +67,7 @@ namespace QuizEarth.Data
             var question6 = new Question
             {
                 QuestionText = "Where does Sweden import trash from",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "France",
                 Answer2 = "Germany",
                 Answer3 = "Norway",
@@ -78,7 +78,7 @@ namespace QuizEarth.Data
             var question7 = new Question
             {
                 QuestionText = "What did a former king become when he lost his throne",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "Bartender",
                 Answer2 = "Pirate",
                 Answer3 = "Prime Minister",
@@ -89,7 +89,7 @@ namespace QuizEarth.Data
             var question8 = new Question
             {
                 QuestionText = "What is Sweden considered?",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "A first world country",
                 Answer2 = "A second world country",
                 Answer3 = "A third world country",
@@ -100,7 +100,7 @@ namespace QuizEarth.Data
             var question9 = new Question
             {
                 QuestionText = "Which of these were invented in Sweden?",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "Nicorette",
                 Answer2 = "TV",
                 Answer3 = "Earphones",
@@ -111,7 +111,7 @@ namespace QuizEarth.Data
             var question10 = new Question
             {
                 QuestionText = "Which world war did Sweden not take part in?",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "WW1",
                 Answer2 = "WW2",
                 Answer3 = "Both",
@@ -122,7 +122,7 @@ namespace QuizEarth.Data
             var question11 = new Question
             {
                 QuestionText = "Which sea separates Sweden and Denmark",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "Baltic",
                 Answer2 = "Artic",
                 Answer3 = "Indian",
@@ -133,7 +133,7 @@ namespace QuizEarth.Data
             var question12 = new Question
             {
                 QuestionText = "When did Sweden become a member of the EU?",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "1996",
                 Answer2 = "1995",
                 Answer3 = "1994",
@@ -144,7 +144,7 @@ namespace QuizEarth.Data
             var question13 = new Question
             {
                 QuestionText = "When is national day in Sweden?",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "4th of june",
                 Answer2 = "5th of june",
                 Answer3 = "6th of june",
@@ -155,7 +155,7 @@ namespace QuizEarth.Data
             var question14 = new Question
             {
                 QuestionText = "Sweden has the highest number of which fast food restaurants per capita in Europe?",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "Burger King",
                 Answer2 = "KFC",
                 Answer3 = "Subway",
@@ -166,7 +166,7 @@ namespace QuizEarth.Data
             var question15 = new Question
             {
                 QuestionText = "Which of these is famously swedish",
-                CountryId = 2,
+                CountryId = 153,
                 Answer1 = "Ikea",
                 Answer2 = "Burger King",
                 Answer3 = "Walmart",
@@ -202,7 +202,7 @@ namespace QuizEarth.Data
             var question1 = new Question
             {
                 QuestionText = "What is the capital of Scotland?",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "Edinburgh",
                 Answer2 = "Glasgow",
                 Answer3 = "Dundee",
@@ -213,7 +213,7 @@ namespace QuizEarth.Data
             var question2 = new Question
             {
                 QuestionText = "What is Scotland’s national animal",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "Lion",
                 Answer2 = "Unicorn",
                 Answer3 = "Nessy",
@@ -224,7 +224,7 @@ namespace QuizEarth.Data
             var question3 = new Question
             {
                 QuestionText = "How many flags does Scotland have?",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "1",
                 Answer2 = "2",
                 Answer3 = "3",
@@ -235,7 +235,7 @@ namespace QuizEarth.Data
             var question4 = new Question
             {
                 QuestionText = "Which Scottish city is home to Robert Gordon University",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "Edinburgh",
                 Answer2 = "Glasgow",
                 Answer3 = "Stirling",
@@ -246,7 +246,7 @@ namespace QuizEarth.Data
             var question5 = new Question
             {
                 QuestionText = "Which of these became an official language of Scotland in 2005 ? ",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "English",
                 Answer2 = "Gaelic",
                 Answer3 = "Irish",
@@ -257,7 +257,7 @@ namespace QuizEarth.Data
             var question6 = new Question
             {
                 QuestionText = "What is the largest city in Scotland",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "Dundee",
                 Answer2 = "Aberdeen",
                 Answer3 = "Glasgow",
@@ -268,7 +268,7 @@ namespace QuizEarth.Data
             var question7 = new Question
             {
                 QuestionText = "What is the oldest university in Scotland",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "University of Edinburgh",
                 Answer2 = "University of Glasgow",
                 Answer3 = "University of St Andrews",
@@ -279,7 +279,7 @@ namespace QuizEarth.Data
             var question8 = new Question
             {
                 QuestionText = "Who is not a famous Scot?",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "Alexander Graham Bell",
                 Answer2 = "William Wallace",
                 Answer3 = "Queen Victoria",
@@ -290,7 +290,7 @@ namespace QuizEarth.Data
             var question9 = new Question
             {
                 QuestionText = "Roughly, what is the population of Scotland?",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "5 million",
                 Answer2 = "5.5 million",
                 Answer3 = "6 million",
@@ -301,7 +301,7 @@ namespace QuizEarth.Data
             var question10 = new Question
             {
                 QuestionText = "How many cities are there in Scotland",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "4",
                 Answer2 = "6",
                 Answer3 = "3",
@@ -312,7 +312,7 @@ namespace QuizEarth.Data
             var question11 = new Question
             {
                 QuestionText = "What is the name of the pouch worn at the front of a kilt",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "A pouch",
                 Answer2 = "A manbag",
                 Answer3 = "A sporran",
@@ -323,7 +323,7 @@ namespace QuizEarth.Data
             var question12 = new Question
             {
                 QuestionText = "What is Scotland’s longest river",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "The Tay",
                 Answer2 = "The Clyde",
                 Answer3 = "The Thames",
@@ -334,7 +334,7 @@ namespace QuizEarth.Data
             var question13 = new Question
             {
                 QuestionText = "What is a famous Scottish instrument",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "Bagpipes",
                 Answer2 = "Guitar",
                 Answer3 = "Drums",
@@ -345,7 +345,7 @@ namespace QuizEarth.Data
             var question14 = new Question
             {
                 QuestionText = "Which loch contains more water than all the English and Welsh lakes put together?",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "Tay",
                 Answer2 = "Fine",
                 Answer3 = "Lomond",
@@ -356,7 +356,7 @@ namespace QuizEarth.Data
             var question15 = new Question
             {
                 QuestionText = "What is a traditional Scottish dish",
-                CountryId = 1,
+                CountryId = 168,
                 Answer1 = "Haggis",
                 Answer2 = "Curry",
                 Answer3 = "Lamb",

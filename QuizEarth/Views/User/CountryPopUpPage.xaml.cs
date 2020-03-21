@@ -20,7 +20,7 @@ namespace QuizEarth.Views.User
         private void Button_OnClicked(object sender, EventArgs e)
         {
             Routing.RegisterRoute("quizPage", typeof(QuizPage));
-            Shell.Current.GoToAsync($"quizPage?countryId={_countryId}");
+            Shell.Current.GoToAsync($"quizPage?CountryId={_countryId}");
         }
     }
 }

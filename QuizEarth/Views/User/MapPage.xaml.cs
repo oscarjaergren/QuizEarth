@@ -57,22 +57,7 @@ namespace QuizEarth.Views.User
             HighlightAvailableCountries();
         }
 
-        public Country[] Countries { get; private set; }
-
         public List<Country> AvailableCountries { get; private set; }
-
-
-        public Country SelectedCountry
-        {
-            get => _selectedCountry;
-            set
-            {
-                _selectedCountry = value;
-                if (value != null)
-                {
-                }
-            }
-        }
 
         private void SetMapStyle()
         {
@@ -82,20 +67,11 @@ namespace QuizEarth.Views.User
         private void InitData()
         {
             _countryPolygons = JsonConvert.DeserializeObject<FeatureCollection>(ReadCountryGeoJson());
-            Countries =
-                _countryPolygons.Features
-                    .Select(f => new Country(f.Id, f.Properties["name"].ToString()))
-                    .OrderBy(c => c.Name)
-                    .ToArray();
-            OnPropertyChanged(nameof(Countries));
         }
 
-        private void HighlightAvailableCountries()
+        private async void HighlightAvailableCountries()
         {
-            var country = Countries.First();
-            var country2 = Countries.FirstOrDefault(x => x.CountryId == "SE");
-
-            AvailableCountries = new List<Country> {country, country2};
+            AvailableCountries = await App.Database.GetQuizCountries();
 
             HighlightCountry();
         }

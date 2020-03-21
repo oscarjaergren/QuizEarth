@@ -27,12 +27,6 @@
                       Style="{StaticResource BaseStyle}"
                       ContentTemplate="{DataTemplate user:MapPage}" />
 
-        <ShellContent Route="monkeys"
-                      Title="Quiz"
-                      Icon="monkey.png"
-                      Style="{StaticResource BaseStyle}"
-                      ContentTemplate="{DataTemplate user:QuizPage}" />
-
         <ShellContent Route="bears"
                       Title="Leaderboard"
                       Icon="bear.png"

@@ -33,22 +33,21 @@ namespace QuizEarth.Data
 
                 App.Database.InitializeAsync().SafeFireAndForget();
 
-                PopulateCountriesIntoDatabase();
+                PopulateCountriesIntoDatabase().SafeFireAndForget();
                 CreateAdminUser().SafeFireAndForget();
-                CreateQuestions();
+                CreateQuestions().SafeFireAndForget();
             }
         }
 
-        private static void CreateQuestions()
+        private static async Task CreateQuestions()
         {
-            var swedenQuestions = RawData.GetSwedenQuestions();
             var scottishQuestions = RawData.GetScottishQuestions();
+            await App.Database.InsertQuestions(scottishQuestions);
+            await App.Database.UpdateQuizStatus(true, 168);
 
-            App.Database.InsertQuestions(swedenQuestions);
-            App.Database.UpdateQuizStatus(1, true);
-
-            App.Database.InsertQuestions(scottishQuestions);
-            App.Database.UpdateQuizStatus(2, true);
+            var swedenQuestions = RawData.GetSwedenQuestions();
+            await App.Database.InsertQuestions(swedenQuestions);
+            await App.Database.UpdateQuizStatus(true, 153);
         }
 
         private static async Task CreateAdminUser()
@@ -58,7 +57,7 @@ namespace QuizEarth.Data
         }
 
 
-        private static void PopulateCountriesIntoDatabase()
+        private static async Task PopulateCountriesIntoDatabase()
         {
             var featuresCollection = JsonConvert.DeserializeObject<FeatureCollection>(ReadCountryGeoJson());
             var items2 = featuresCollection.Features
@@ -66,7 +65,7 @@ namespace QuizEarth.Data
                     .OrderBy(c => c.Name)
                     .ToList();
 
-            App.Database.InsertCountries(items2);
+            await App.Database.InsertCountries(items2);
         }
 
         private static string ReadCountryGeoJson()

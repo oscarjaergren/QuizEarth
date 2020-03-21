@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 using QuizEarth.Models;
 using Xamarin.Forms;
@@ -81,7 +80,8 @@ namespace QuizEarth.PageModels.User
 
         private async void GetQuestions()
         {
-            var questions = await App.Database.GetQuestions(1);
+            Int32.TryParse(CountryId, out int countryId);
+            var questions = await App.Database.GetQuestions(countryId);
             Questions = new List<Question>(questions);
 
             Question = Questions[0];

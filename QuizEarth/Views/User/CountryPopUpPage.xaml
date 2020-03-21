@@ -5,8 +5,17 @@
                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:pageModels="clr-namespace:QuizEarth.PageModels.User"
                  mc:Ignorable="d"
-                 x:Class="QuizEarth.Views.User.CountryPopUpPage">
+                 x:Class="QuizEarth.Views.User.CountryPopUpPage"    
+                 x:DataType="pageModels:CountryPopUpPageModel"
+                 Visual="Material"
+                 Style="{StaticResource PageStyle}">
+
+    <pages:PopupPage.BindingContext>
+        <pageModels:CountryPopUpPageModel />
+    </pages:PopupPage.BindingContext>
+    
     <StackLayout
         HeightRequest="200"
         WidthRequest="300"
@@ -14,7 +23,8 @@
         VerticalOptions="Center"
         HorizontalOptions="Center"
         Padding="20, 20, 20, 20">
-        <Label Text="You Clicked Sweden" />
+        <Label Text="You Clicked" />
+        <Label Text="{Binding CountryName}" />
         <Button Text="START" Clicked="Button_OnClicked" Style="{StaticResource ButtonStyle}" />
 
     </StackLayout>
