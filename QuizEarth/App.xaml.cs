@@ -15,7 +15,7 @@ namespace QuizEarth
 
             InitNavigation();
 
-            DatabaseInitalizationHelper.Initialize();
+            DatabaseInitializationHelper.Initialize();
         }
 
         public static QuizEarthDatabase Database => _database ?? (_database = new QuizEarthDatabase());

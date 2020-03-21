@@ -188,7 +188,6 @@ namespace QuizEarth.Views.User
             var lat = clickPosition.Latitude;
             var lon = clickPosition.Longitude;
 
-
             var placemarks = await Geocoding.GetPlacemarksAsync(lat, lon);
 
             var placemark = placemarks?.FirstOrDefault();
@@ -199,7 +198,7 @@ namespace QuizEarth.Views.User
 
             if (country != null)
             {
-                _countryPopUp = new CountryPopUpPage();
+                _countryPopUp = new CountryPopUpPage(country.CountryId);
                 await PopupNavigation.Instance.PushAsync(_countryPopUp);
             }
         }

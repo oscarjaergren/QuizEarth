@@ -12,7 +12,7 @@ using Xamarin.Essentials;
 
 namespace QuizEarth.Data
 {
-    public static class DatabaseInitalizationHelper
+    public static class DatabaseInitializationHelper
     {
         public static bool DatabaseIsInitialized { get; set; }
 
@@ -20,8 +20,8 @@ namespace QuizEarth.Data
         public static void Initialize()
         {
             // Check if we have created database, if we have return;
-            string initalized = SecureStorage.GetAsync("IsInitalized").Result;
-            if (initalized == "1")
+            string initialized = SecureStorage.GetAsync("IsInitalized").Result;
+            if (initialized == "1")
             {
                 DatabaseIsInitialized = true;
                 return;
@@ -41,27 +41,14 @@ namespace QuizEarth.Data
 
         private static void CreateQuestions()
         {
-            var questions = new List<Question>();
-            var countryid = 1;
+            var swedenQuestions = RawData.GetSwedenQuestions();
+            var scottishQuestions = RawData.GetScottishQuestions();
 
-            for (int i = 0; i < 10; i++)
-            {
-                var question = new Question(2)
-                {
-                    Answer1 = "Uppsala",
-                    Answer2 = "Stockholm",
-                    Answer3 = "Göteborg",
-                    Answer4 = "Malmö",
-                    CorrectAnswer = "Stockholm",
-                    QuestionText = "What is the capital of Sweden?",
-                    CountryId = countryid,
-                };
-                questions.Add(question);
-            }
+            App.Database.InsertQuestions(swedenQuestions);
+            App.Database.UpdateQuizStatus(1, true);
 
-            App.Database.InsertQuestions(questions);
-            App.Database.UpdateQuizStatus(countryid, true);
-
+            App.Database.InsertQuestions(scottishQuestions);
+            App.Database.UpdateQuizStatus(2, true);
         }
 
         private static async Task CreateAdminUser()

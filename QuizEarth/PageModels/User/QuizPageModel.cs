@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using QuizEarth.Models;
@@ -6,8 +7,11 @@ using Xamarin.Forms;
 
 namespace QuizEarth.PageModels.User
 {
+    [QueryProperty("CountryId", "_countryId")]
     public class QuizPageModel : BaseViewModel
     {
+        private string _countryId;
+
         private Question _question;
 
         public QuizPageModel()
@@ -28,6 +32,16 @@ namespace QuizEarth.PageModels.User
             {
                 _question = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public string CountryId
+        {
+            get => _countryId;
+            set
+            {
+                _countryId = Uri.UnescapeDataString(value);
+                SetProperty(ref _countryId, value);
             }
         }
 
