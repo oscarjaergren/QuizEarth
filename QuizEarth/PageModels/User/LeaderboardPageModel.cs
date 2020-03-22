@@ -21,8 +21,8 @@ namespace QuizEarth.PageModels.User
             ReturnToMapCommand = new MvvmHelpers.Commands.Command(OnReturnToMap);
 
 
-            //GetScores();
-            //SortScoreboard();
+            GetScores();
+            SortScoreboard();
         }
 
         private void OnReturnToMap()
@@ -42,7 +42,7 @@ namespace QuizEarth.PageModels.User
             return p1.Score.CompareTo(p2.Score);
         }
 
-        private async Task GetScores()
+        private async void GetScores()
         {
             ScoreboardList = await App.Database.GetScoreboard();
         }

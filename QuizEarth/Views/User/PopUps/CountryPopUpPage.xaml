@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:pageModels="clr-namespace:QuizEarth.PageModels.User"
+                 xmlns:popUps="clr-namespace:QuizEarth.PageModels.User.PopUps;assembly=QuizEarth"
+                 mc:Ignorable="d"
+                 x:Class="QuizEarth.Views.User.PopUps.CountryPopUpPage"    
+                 x:DataType="popUps:CountryPopUpPageModel"
+                 Visual="Material"
+                 Style="{StaticResource PageStyle}">
+
+    
+
+    <Grid  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="400" WidthRequest="400" BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="14*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Frame CornerRadius="10"  
+               BorderColor="#212121" 
+               BackgroundColor="{StaticResource BasePurple}" 
+               Grid.Row="1" Grid.RowSpan="2" Grid.Column="1"
+               Padding="0">
+            <FlexLayout JustifyContent="SpaceEvenly" Direction="Column" Padding="10"  >
+
+                <Label Text="It's Quiz Time! " Style="{StaticResource LabelStyle}" />
+
+                <Label Style="{StaticResource LabelStyle}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Play "/>
+                            <Span Text="{Binding CountryName}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Button Text="Start Quiz" Command="{Binding GoToQuizCommand}" Style="{StaticResource ButtonStyle}" />
+
+            </FlexLayout>
+
+        </Frame>
+
+        <ImageButton Grid.Row="0"  Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Scale="0.6" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="End" Source="close_circle_button.png" Clicked="OnCloseButtonTapped"/>
+
+</Grid>
+
+
+</pages:PopupPage>

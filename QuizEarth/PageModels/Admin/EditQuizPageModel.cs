@@ -12,6 +12,8 @@ namespace QuizEarth.PageModels.Admin
     {
         private string countryId;
 
+        public Country SelectedCountry { get; set; }
+
         public ICommand AddQuestionCommand { get; set; }
 
         public ICommand SaveQuizCommand { get; set; }
@@ -21,10 +23,6 @@ namespace QuizEarth.PageModels.Admin
         public EditQuizPageModel()
         {
             Questions = new ObservableCollection<Question>();
-
-            Int32.TryParse(CountryId, out int countryId);
-
-            FillQuestions(countryId);
 
             SaveQuizCommand = new Command(OnSaveAnswers);
             AddQuestionCommand = new Command(OnAddQuestion);
@@ -41,8 +39,8 @@ namespace QuizEarth.PageModels.Admin
             // Must be minimum 10 questions
             if (Questions.Count == 10)
             {
-                 UserDialogs.Instance.AlertAsync("Sorry, the minimum is 10 questions",
-                    "Sorry", "OK");
+                UserDialogs.Instance.AlertAsync("Sorry, the minimum is 10 questions",
+                   "Sorry", "OK");
                 return;
             }
 
@@ -58,10 +56,21 @@ namespace QuizEarth.PageModels.Admin
 
         private void FillQuestions(int countryId)
         {
-            for (int i = 0; i < 10; i++)
+            if (SelectedCountry.HasQuiz)
             {
-                var question = new Question(countryId);
-                Questions.Add(question);
+                var questions = App.Database.GetAllQuestionsForCountry(countryId).Result;
+                foreach (var question in questions)
+                {
+                    Questions.Add(question);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    var question = new Question(countryId);
+                    Questions.Add(question);
+                }
             }
         }
 
@@ -71,6 +80,11 @@ namespace QuizEarth.PageModels.Admin
             set
             {
                 countryId = Uri.UnescapeDataString(value);
+
+                Int32.TryParse(CountryId, out int _countryId);
+                SelectedCountry = App.Database.GetCountry(_countryId).Result;
+                FillQuestions(_countryId);
+
                 SetProperty(ref countryId, value);
             }
         }

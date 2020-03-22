@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using QuizEarth.Models;
+using QuizEarth.Views.User.PopUps;
+using Rg.Plugins.Popup.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace QuizEarth.PageModels.User
@@ -16,8 +19,6 @@ namespace QuizEarth.PageModels.User
         public QuizPageModel()
         {
             Questions = new List<Question>();
-
-            GetQuestions();
 
             AnswerTapCommand = new Command<string>(OnAnswerTap);
         }
@@ -40,6 +41,7 @@ namespace QuizEarth.PageModels.User
             set
             {
                 _countryId = Uri.UnescapeDataString(value);
+                GetQuestions();
                 SetProperty(ref _countryId, value);
             }
         }
@@ -53,6 +55,30 @@ namespace QuizEarth.PageModels.User
         {
             var question = GetNextQuestion();
 
+            //Quiz is over, so save results and show victory screen.
+            if (question == null)
+            {
+                //Save result from user
+                var lastUserId = SecureStorage.GetAsync("LastUserId").Result;
+                int.TryParse(lastUserId, out var userId);
+                Int32.TryParse(CountryId, out int countryId);
+
+                var scoreboard = new Scoreboard()
+                {
+                    UserId = userId,
+                    CountryId = countryId,
+                    Score = Score
+                };
+
+                App.Database.SaveScore(scoreboard);
+
+                //Display Victory Screen
+                var victoryPopUp = new VictoryPopUpPage(userId,countryId, Score);
+                PopupNavigation.Instance.PushAsync(victoryPopUp);
+
+                return;
+            }
+
             // Keep track of already answered questions so they won't be asked again
             Questions.Add(Question);
 
@@ -61,10 +87,21 @@ namespace QuizEarth.PageModels.User
             Question = question;
         }
 
+        
+
         private Question GetNextQuestion()
         {
             int index = Questions.IndexOf(Question);
-            return Questions[index + 1];
+
+            //Quiz is over, end it)
+            if (index == 9)
+            {
+                return null;
+            }
+            else
+            {
+                return Questions[index + 1];
+            }
         }
 
         private void CheckResult(string answer)
@@ -80,11 +117,13 @@ namespace QuizEarth.PageModels.User
 
         private async void GetQuestions()
         {
-            Int32.TryParse(CountryId, out int countryId);
-            var questions = await App.Database.GetQuestions(countryId);
-            Questions = new List<Question>(questions);
-
-            Question = Questions[0];
+            if (CountryId != null)
+            {
+                Int32.TryParse(CountryId, out int countryId);
+                var questions = await App.Database.GetRandomQuestions(countryId);
+                Questions = new List<Question>(questions);
+                Question = Questions[0];
+            }
         }
     }
 }

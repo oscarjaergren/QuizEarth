@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:popUps="clr-namespace:QuizEarth.PageModels.User.PopUps;assembly=QuizEarth"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 mc:Ignorable="d"
+                 x:Class="QuizEarth.Views.User.PopUps.VictoryPopUpPage"                 
+                 x:DataType="popUps:VictoryPopUpPageModel"
+                 Visual="Material"
+                 Style="{StaticResource PageStyle}">
+
+    <StackLayout
+        HeightRequest="200"
+        WidthRequest="300"
+        BackgroundColor="{StaticResource BasePurple}"
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        Padding="20, 20, 20, 20">
+
+        <Label Text="You won!" Style="{StaticResource LabelStyle}" />
+
+        <Label Text="{Binding CountryName}" Style="{StaticResource LabelStyle}" />
+
+        <Label Style="{StaticResource LabelStyle}" >
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="You got "/>
+                    <Span Text="{Binding Score}"/>
+                    <Span Text="/10 right!"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+
+        <Button Text="Continue" Command="{Binding GoToMapCommand}" Style="{StaticResource ButtonStyle}" />
+
+        <Button Text="See Score" Command="{Binding GoToLeaderboardCommand}" Style="{StaticResource ButtonStyle}" />
+
+    </StackLayout>
+</pages:PopupPage>

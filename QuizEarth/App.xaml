@@ -19,7 +19,9 @@
         </Style>
 
         <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="MidnightBlue" />
+            <Setter Property="TextColor" Value="WhiteSmoke" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
             <Setter Property="FontSize" Value="24" />
         </Style>
 
@@ -28,6 +30,9 @@
         </Style>
 
         <Color x:Key="NavigationPrimary">#2E0854</Color>
+        <Color x:Key="BasePurple">#2E0854</Color>
+        <Color x:Key="BaseBlue">MidnightBlue</Color>
+        <Color x:Key="BaseColor">#02808F</Color>
 
         <!--AppShell Styles-->
         <Style x:Key="BaseStyle" TargetType="Element">

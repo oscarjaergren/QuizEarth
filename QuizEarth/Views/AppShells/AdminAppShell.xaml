@@ -27,7 +27,7 @@
                       Style="{StaticResource BaseStyle}"
                       ContentTemplate="{DataTemplate user:MapPage}" />
 
-        <ShellContent Route="bears"
+        <ShellContent Route="leaderboard"
                       Title="Leaderboard"
                       Icon="bear.png"
                       Style="{StaticResource BaseStyle}"

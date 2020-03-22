@@ -8,6 +8,7 @@ using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using QuizEarth.Controls.Map;
 using QuizEarth.Models;
+using QuizEarth.Views.User.PopUps;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -174,7 +175,7 @@ namespace QuizEarth.Views.User
 
             if (country != null)
             {
-                _countryPopUp = new CountryPopUpPage(country.CountryId);
+                _countryPopUp = new CountryPopUpPage(country.Id, country.Name);
                 await PopupNavigation.Instance.PushAsync(_countryPopUp);
             }
         }

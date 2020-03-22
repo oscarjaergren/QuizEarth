@@ -16,18 +16,37 @@
     <ContentPage.BindingContext>
         <pageModels:LeaderboardPageModel />
     </ContentPage.BindingContext>
-    
+
     <StackLayout Orientation="Vertical">
+
+        <Grid BackgroundColor="{StaticResource BasePurple}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Rank" Style="{StaticResource LabelStyle}" />
+
+            <Label Grid.Column="1" Text="User" Style="{StaticResource LabelStyle}" />
+
+            <Label Grid.Column="2" Text="Country" Style="{StaticResource LabelStyle}" />
+
+            <Label Grid.Column="3" Text="Score}" Style="{StaticResource LabelStyle}"  />
+
+        </Grid>
+
         <CollectionView ItemsSource="{Binding ScoreboardList}">
             <CollectionView.ItemTemplate>
                 <DataTemplate  x:DataType="models:Scoreboard">
-                        <Grid BackgroundColor="WhiteSmoke">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                    <Grid BackgroundColor="{StaticResource BasePurple}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
                         <Label Text="{Binding Score}" Style="{StaticResource LabelStyle}" />
 
@@ -35,15 +54,22 @@
 
                         <Label Grid.Column="2" Text="{Binding CountryId}" Style="{StaticResource LabelStyle}" />
 
-                        <Label Grid.Column="3" Text="{Binding Score}" Style="{StaticResource LabelStyle}"  />
-                            
-                        </Grid>
+                        <Label Grid.Column="3" Style="{StaticResource LabelStyle}" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Score}"/>
+                                    <Span Text="/10"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
         <Button Text="Back To Map" Command="{Binding ReturnToMapCommand}" Style="{StaticResource ButtonStyle}" />
-        
+
     </StackLayout>
 
 </ContentPage>

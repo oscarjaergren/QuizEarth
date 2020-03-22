@@ -29,15 +29,15 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout>
+    <StackLayout BackgroundColor="{StaticResource BaseColor}">
 
         <Label Text="{Binding CountryId}" TextColor="WhiteSmoke" />
 
-        <CollectionView ItemsSource="{Binding Questions}">
+        <CollectionView ItemsSource="{Binding Questions}" BackgroundColor="{StaticResource BaseColor}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Question">
 
-                    <Frame BorderColor="Black" Padding="0" Margin="0" HeightRequest="300">
+                    <Frame BorderColor="Black" Padding="0" Margin="0" HeightRequest="300" BackgroundColor="{StaticResource BaseColor}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.3*" />
@@ -48,14 +48,15 @@
                                 <ColumnDefinition Width="0.2*" />
                             </Grid.ColumnDefinitions>
 
-                            <Entry Grid.Row="0" Text="{Binding QuestionText}" Placeholder="Enter Question" Style="{StaticResource QuestionStyle}" />
+                            <Entry Grid.Row="0" Text="{Binding QuestionText}" Placeholder="Enter Question" Style="{StaticResource QuestionStyle}" BackgroundColor="{StaticResource BaseColor}" />
                             
                             <ImageButton Grid.Row="0" Grid.Column="1" 
                                          Source="GarbageIcon.png"
                                          Command="{Binding Path=DeleteQuestionCommand, Source={x:Reference MyEditQuizPageModel}}"
+                                         BackgroundColor="Transparent"
                                          CommandParameter="{Binding .}"/>
 
-                            <Frame Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" BorderColor="Black" Padding="0" Margin="0">
+                            <Frame Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" BorderColor="Black" Padding="0" Margin="0" BackgroundColor="{StaticResource BaseColor}">
                                 <Grid >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />

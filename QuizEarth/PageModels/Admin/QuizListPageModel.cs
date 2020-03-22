@@ -38,7 +38,7 @@ namespace QuizEarth.PageModels.Admin
             if (SelectedCountry != null)
             {
                 Routing.RegisterRoute("adminPage", typeof(EditQuizPage));
-                await Shell.Current.GoToAsync($"adminPage?countryId={SelectedCountry.CountryId}");
+                await Shell.Current.GoToAsync($"adminPage?countryId={SelectedCountry.Id}");
             }
         }
 
@@ -62,7 +62,6 @@ namespace QuizEarth.PageModels.Admin
             var countries = await App.Database.GetAllCountries();
 
             Countries = new ObservableCollection<Country>(countries);
-
         }
     }
 }

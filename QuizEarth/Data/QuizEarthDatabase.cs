@@ -27,6 +27,11 @@ namespace QuizEarth.Data
             return Database.Table<User>().Where(user => user.UserName == userName).FirstOrDefaultAsync();
         }
 
+        internal Task<Country> GetCountry(int countryId)
+        {
+            return Database.Table<Country>().Where(x => x.Id == countryId).FirstOrDefaultAsync();
+        }
+
         internal Task<User> GetUserByUserId(int userId)
         {
             return Database.Table<User>().Where(user => user.UserId == userId).FirstOrDefaultAsync();
@@ -46,6 +51,10 @@ namespace QuizEarth.Data
                 }
         }
 
+        internal Task SaveScore(Scoreboard scoreboard)
+        {
+            return Database.InsertAsync(scoreboard);
+        }
 
         internal Task<List<Scoreboard>> GetScoreboard()
         {
@@ -72,10 +81,15 @@ namespace QuizEarth.Data
             return Database.Table<Question>().ToListAsync();
         }
 
-        public Task<List<Question>> GetQuestions(int countryId)
+        public Task<List<Question>> GetRandomQuestions(int countryId)
         {
             //Returns 10 random questions from the database
-           return Database.QueryAsync<Question>("SELECT * FROM Question WHERE CountryId = ? ORDER BY RANDOM() LIMIT 10", countryId);
+            return Database.QueryAsync<Question>("SELECT * FROM Question WHERE CountryId = ? ORDER BY RANDOM() LIMIT 10", countryId);
+        }
+
+        public Task<List<Question>> GetAllQuestionsForCountry(int countryId)
+        {
+            return Database.QueryAsync<Question>("SELECT * FROM Question WHERE CountryId = ?", countryId);
         }
 
         internal Task<List<Country>> GetQuizCountries()

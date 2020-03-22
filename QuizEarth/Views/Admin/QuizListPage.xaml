@@ -15,6 +15,23 @@
         <admin:QuizListPageModel  x:Name="MyEditQuizPageModel"/>
     </ContentPage.BindingContext>
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="CountryLabel" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="WhiteSmoke" />
+            </Style>
+
+            <Style x:Key="AnswerStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="Green" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
     <CollectionView ItemsSource="{Binding Countries}"   
                     SelectedItem="{Binding SelectedCountry, Mode=TwoWay}"
                     SelectionMode="Single"
@@ -32,7 +49,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Text="{Binding Id}" />
+                    <Label Grid.Column="0" Text="{Binding Id}" Style="{StaticResource CountryLabel}" />
 
                     <Label Grid.Column="1" Text="{Binding CountryId}" />
 
