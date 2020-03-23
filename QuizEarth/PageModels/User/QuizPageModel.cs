@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using MvvmHelpers;
+using QuizEarth.Helpers;
 using QuizEarth.Models;
 using QuizEarth.Views.User.PopUps;
 using Rg.Plugins.Popup.Services;
@@ -63,14 +65,19 @@ namespace QuizEarth.PageModels.User
                 int.TryParse(lastUserId, out var userId);
                 Int32.TryParse(CountryId, out int countryId);
 
+                var user = App.Database.GetUserByUserId(userId).Result;
+                var country = App.Database.GetCountry(countryId).Result;
+
                 var scoreboard = new Scoreboard()
                 {
                     UserId = userId,
                     CountryId = countryId,
+                    UserName = user.UserName,
+                    CountryName = country.Name,
                     Score = Score
                 };
 
-                App.Database.SaveScore(scoreboard);
+                App.Database.SaveScore(scoreboard).SafeFireAndForget();
 
                 //Display Victory Screen
                 var victoryPopUp = new VictoryPopUpPage(userId,countryId, Score);

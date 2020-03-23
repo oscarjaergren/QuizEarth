@@ -7,8 +7,6 @@ namespace QuizEarth.PageModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public int UserId { get; set; }
-
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)

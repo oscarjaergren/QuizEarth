@@ -12,5 +12,11 @@ namespace QuizEarth.Views.User
         {
             InitializeComponent();
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await LeaderboardPageModel.OnAppearing();
+        }
     }
 }

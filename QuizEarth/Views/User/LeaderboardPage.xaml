@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pageModels="clr-namespace:QuizEarth.PageModels.User"
     xmlns:models="clr-namespace:QuizEarth.Models"
+    xmlns:converters="clr-namespace:QuizEarth.Converters;assembly=QuizEarth"
     mc:Ignorable="d"
     x:Class="QuizEarth.Views.User.LeaderboardPage"
     x:DataType="pageModels:LeaderboardPageModel"
@@ -14,16 +15,27 @@
     Style="{StaticResource PageStyle}">
 
     <ContentPage.BindingContext>
-        <pageModels:LeaderboardPageModel />
+        <pageModels:LeaderboardPageModel x:Name="LeaderboardPageModel" />
     </ContentPage.BindingContext>
 
-    <StackLayout Orientation="Vertical">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IndexValueConverter x:Key="IndexConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-        <Grid BackgroundColor="{StaticResource BasePurple}">
+    <Grid BackgroundColor="{StaticResource BasePurple}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2.5*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -33,26 +45,37 @@
 
             <Label Grid.Column="2" Text="Country" Style="{StaticResource LabelStyle}" />
 
-            <Label Grid.Column="3" Text="Score}" Style="{StaticResource LabelStyle}"  />
+            <Label Grid.Column="3" Text="Score" Style="{StaticResource LabelStyle}"  />
 
         </Grid>
 
-        <CollectionView ItemsSource="{Binding ScoreboardList}">
+        <CollectionView Grid.Row="1" 
+                        Margin="5"
+                        ItemsSource="{Binding ScoreboardList}" 
+                        x:Name="Scores"
+                        EmptyView="Sorry, no scores yet! Play a game and view your results here!">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 VerticalItemSpacing="8" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate  x:DataType="models:Scoreboard">
                     <Grid BackgroundColor="{StaticResource BasePurple}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2.5*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="{Binding Score}" Style="{StaticResource LabelStyle}" />
+                        <Label Text="{Binding ., 
+                            Converter={StaticResource IndexConverter}, 
+                            ConverterParameter={Binding Source={x:Reference Scores}, Path=BindingContext}}" 
+                               Style="{StaticResource LabelStyle}" />
 
-                        <Label Grid.Column="1" Text="{Binding UserId}" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Column="1" Text="{Binding UserName}" Style="{StaticResource LabelStyle}" />
 
-                        <Label Grid.Column="2" Text="{Binding CountryId}" Style="{StaticResource LabelStyle}" />
+                        <Label Grid.Column="2" Text="{Binding CountryName}" Style="{StaticResource LabelStyle}" />
 
                         <Label Grid.Column="3" Style="{StaticResource LabelStyle}" >
                             <Label.FormattedText>
@@ -68,8 +91,8 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Text="Back To Map" Command="{Binding ReturnToMapCommand}" Style="{StaticResource ButtonStyle}" />
+        <Button Grid.Row="2" Margin="5" Text="Back To Map" Command="{Binding ReturnToMapCommand}" Style="{StaticResource ButtonStyle}" />
 
-    </StackLayout>
+    </Grid>
 
 </ContentPage>
